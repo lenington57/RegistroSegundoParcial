@@ -50,7 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\IRepository.cs" />
+    <Compile Include="BLL\Repositorio.cs" />
+    <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\DetalleMantenimiento.cs" />
+    <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,8 +108,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entidades\" />
+    <Folder Include="DAL\Scripts\" />
     <Folder Include="UI\Reportes\" />
   </ItemGroup>
   <ItemGroup>
@@ -121,9 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Delete_16px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DAL\Scripts\Scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

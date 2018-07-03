@@ -54,7 +54,10 @@
     <Compile Include="BLL\Repositorio.cs" />
     <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
+    <Compile Include="Entidades\Articulos.cs" />
     <Compile Include="Entidades\DetalleMantenimiento.cs" />
+    <Compile Include="Entidades\Entradas.cs" />
+    <Compile Include="Entidades\Talleres.cs" />
     <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -70,11 +73,35 @@
     <Compile Include="UI\Consultas\Consultar.Designer.cs">
       <DependentUpon>Consultar.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Registros\Registrar.cs">
+    <Compile Include="UI\Registros\RegistrarArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Registros\Registrar.Designer.cs">
-      <DependentUpon>Registrar.cs</DependentUpon>
+    <Compile Include="UI\Registros\RegistrarArticulo.Designer.cs">
+      <DependentUpon>RegistrarArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarEntradaArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarEntradaArticulos.Designer.cs">
+      <DependentUpon>RegistrarEntradaArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarMantenimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarMantenimiento.Designer.cs">
+      <DependentUpon>RegistrarMantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarTalleres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarTalleres.Designer.cs">
+      <DependentUpon>RegistrarTalleres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registros\RegistrarVehiculos.Designer.cs">
+      <DependentUpon>RegistrarVehiculos.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -92,8 +119,20 @@
     <EmbeddedResource Include="UI\Consultas\Consultar.resx">
       <DependentUpon>Consultar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registros\Registrar.resx">
-      <DependentUpon>Registrar.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Registros\RegistrarArticulo.resx">
+      <DependentUpon>RegistrarArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrarEntradaArticulos.resx">
+      <DependentUpon>RegistrarEntradaArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrarMantenimiento.resx">
+      <DependentUpon>RegistrarMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrarTalleres.resx">
+      <DependentUpon>RegistrarTalleres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registros\RegistrarVehiculos.resx">
+      <DependentUpon>RegistrarVehiculos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -125,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Delete_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Plus Math_16px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

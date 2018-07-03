@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -10,29 +11,97 @@ namespace RegistroSegundoParcial.BLL
     public class Repositorio<T> : IDisposable, IRepository<T> where T : class
     {
         internal Contexto _contexto;
+        public Repositorio(Contexto contexto)
+        {
+            _contexto = contexto;
+        }
+
         public T Buscar(int id)
         {
-            throw new NotImplementedException();
+            T entity;
+            try
+            {
+                entity = _contexto.Set<T>().Find(id);
+                _contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return entity;
         }
 
         public bool Eliminar(int id)
         {
-            throw new NotImplementedException();
+            bool paso = false;
+            try
+            {
+                T entity = _contexto.Set<T>().Find(id);
+                _contexto.Set<T>().Remove(entity);
+                if (_contexto.SaveChanges() > 0)
+                {
+                    paso = true;
+                }
+                _contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paso;
         }
 
         public List<T> GetList(Expression<Func<T, bool>> expression)
         {
-            throw new NotImplementedException();
+            List<T> Lista = new List<T>();
+            try
+            {
+                Lista = _contexto.Set<T>().Where(expression).ToList();
+                _contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return Lista;
         }
 
         public bool Guardar(T entity)
         {
-            throw new NotImplementedException();
+            bool paso = false;
+            try
+            {
+                if (_contexto.Set<T>().Add(entity) != null)
+                {
+                    _contexto.SaveChanges();
+                    paso = true;
+                }
+                _contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paso;
         }
 
         public bool Modificar(T entity)
         {
-            throw new NotImplementedException();
+            bool paso = false;
+            try
+            {
+                _contexto.Entry(entity).State = EntityState.Modified;
+                if (_contexto.SaveChanges() > 0)
+                {
+                    paso = true;
+                }
+                _contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return paso;
         }
 
         public void Dispose()

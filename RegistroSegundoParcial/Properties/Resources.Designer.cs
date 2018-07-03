@@ -83,6 +83,16 @@ namespace RegistroSegundoParcial.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Plus_Math_16px {
+            get {
+                object obj = ResourceManager.GetObject("Plus Math_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Print_16px {
             get {
                 object obj = ResourceManager.GetObject("Print_16px", resourceCulture);

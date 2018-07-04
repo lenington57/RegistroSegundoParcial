@@ -50,13 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\ArticulosBLL.cs" />
+    <Compile Include="BLL\EntradasBLL.cs" />
     <Compile Include="BLL\IRepository.cs" />
     <Compile Include="BLL\Repositorio.cs" />
+    <Compile Include="BLL\TalleresBLL.cs" />
     <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Articulos.cs" />
-    <Compile Include="Entidades\DetalleMantenimiento.cs" />
     <Compile Include="Entidades\Entradas.cs" />
+    <Compile Include="Entidades\Mantenimiento.cs" />
+    <Compile Include="Entidades\MantenimientoDetalle.cs" />
     <Compile Include="Entidades\Talleres.cs" />
     <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Principal.cs">
@@ -147,7 +151,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAL\Scripts\" />
     <Folder Include="UI\Reportes\" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Plus Math_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DAL\Scripts\Scripts.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

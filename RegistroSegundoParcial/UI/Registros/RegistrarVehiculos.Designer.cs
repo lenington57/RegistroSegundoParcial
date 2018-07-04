@@ -51,6 +51,7 @@
             this.EliminarButton.TabIndex = 42;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 
@@ -62,6 +63,7 @@
             this.GuardarButton.TabIndex = 41;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // NuevoButton
             // 
@@ -73,6 +75,7 @@
             this.NuevoButton.TabIndex = 40;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = true;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // BuscarButton
             // 
@@ -84,6 +87,7 @@
             this.BuscarButton.TabIndex = 39;
             this.BuscarButton.Text = "Buscar";
             this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // label1
             // 
@@ -130,7 +134,6 @@
             // 
             this.MantenimientoTextBox.Location = new System.Drawing.Point(123, 127);
             this.MantenimientoTextBox.Name = "MantenimientoTextBox";
-            this.MantenimientoTextBox.ReadOnly = true;
             this.MantenimientoTextBox.Size = new System.Drawing.Size(89, 20);
             this.MantenimientoTextBox.TabIndex = 48;
             // 

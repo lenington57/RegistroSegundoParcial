@@ -49,6 +49,7 @@
             this.EliminarButton.TabIndex = 38;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 
@@ -60,6 +61,7 @@
             this.GuardarButton.TabIndex = 37;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // NuevoButton
             // 
@@ -71,6 +73,7 @@
             this.NuevoButton.TabIndex = 36;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = true;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // BuscarButton
             // 
@@ -82,6 +85,7 @@
             this.BuscarButton.TabIndex = 35;
             this.BuscarButton.Text = "Buscar";
             this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // TallerIdNumericUpDown
             // 
@@ -130,6 +134,7 @@
             this.Controls.Add(this.BuscarButton);
             this.Name = "RegistrarTalleres";
             this.Text = "Registro de Talleres";
+            this.Load += new System.EventHandler(this.RegistrarTalleres_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TallerIdNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

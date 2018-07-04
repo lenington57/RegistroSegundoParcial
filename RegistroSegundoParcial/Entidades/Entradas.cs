@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RegistroSegundoParcial.Entidades
 {
@@ -18,13 +19,12 @@ namespace RegistroSegundoParcial.Entidades
 
         public int Cantidad { get; set; }
 
-
         public Entradas()
         {
             EntradaId = 0;
             Fecha = DateTime.Now;
             Articulo = string.Empty;
             Cantidad = 0;
-        }
+        }        
     }
 }

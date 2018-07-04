@@ -18,18 +18,11 @@ namespace RegistroSegundoParcial.Entidades
         public int Mantenimiento { get; set; }
 
 
-        public virtual List<DetalleMantenimiento> Detalle { get; set; }
-
-
-
         public Vehiculos()
         {
-            this.Detalle = new List<DetalleMantenimiento>();
-        }
-
-        public void AgregarDetalle(int Id, int VehiculoId, int TallerId, int ArticuloId, DateTime Fecha, string Articulo, int Cantidad, int Precio, int Importe, int SubTotal, int Itbis, int Total)
-        {
-            this.Detalle.Add(new DetalleMantenimiento(Id, VehiculoId, TallerId, ArticuloId, Fecha, Articulo, Cantidad, Precio, Importe, SubTotal, Itbis, Total));
-        }
+            VehiculoId = 0;
+            Descripcion = string.Empty;
+            Mantenimiento = 0;
+        }        
     }
 }

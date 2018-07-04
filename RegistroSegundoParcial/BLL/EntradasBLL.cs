@@ -9,16 +9,16 @@ using System.Data.Entity;
 
 namespace RegistroSegundoParcial.BLL
 {
-    public class VehiculosBLL
+    public class EntradasBLL
     {
-        public static bool Guardar(Vehiculos vehiculo)
+        public static bool Guardar(Entradas entradas)
         {
             bool paso = false;
-            
+
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Vehiculos.Add(vehiculo) != null)
+                if (contexto.Entradas.Add(entradas) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -32,15 +32,15 @@ namespace RegistroSegundoParcial.BLL
             return paso;
         }
 
-        
-        public static bool Modificar(Vehiculos vehiculo)
+
+        public static bool Modificar(Entradas entradas)
         {
             bool paso = false;
-            
+
             Contexto contexto = new Contexto();
             try
             {
-                contexto.Entry(vehiculo).State = EntityState.Modified;
+                contexto.Entry(entradas).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -54,17 +54,17 @@ namespace RegistroSegundoParcial.BLL
             return paso;
         }
 
-        
+
         public static bool Eliminar(int id)
         {
             bool paso = false;
-            
+
             Contexto contexto = new Contexto();
             try
             {
-                Vehiculos vehiculo = contexto.Vehiculos.Find(id);
+                Entradas entradas = contexto.Entradas.Find(id);
 
-                contexto.Vehiculos.Remove(vehiculo);
+                contexto.Entradas.Remove(entradas);
 
                 if (contexto.SaveChanges() > 0)
                 {
@@ -79,30 +79,30 @@ namespace RegistroSegundoParcial.BLL
             return paso;
         }
 
-        
-        public static Vehiculos Buscar(int id)
-        {            
-            Contexto contexto = new Contexto();
-            Vehiculos vehiculo = new Vehiculos();
-            try
-            {
-                vehiculo = contexto.Vehiculos.Find(id);
-                contexto.Dispose();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return vehiculo;
-        }
-        public static List<Vehiculos> GetList(Expression<Func<Vehiculos, bool>> expression)
+
+        public static Entradas Buscar(int id)
         {
-            List<Vehiculos> vehiculos = new List<Vehiculos>();
+            Contexto contexto = new Contexto();
+            Entradas entradas = new Entradas();
+            try
+            {
+                entradas = contexto.Entradas.Find(id);
+                contexto.Dispose();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return entradas;
+        }
+        public static List<Entradas> GetList(Expression<Func<Entradas, bool>> expression)
+        {
+            List<Entradas> entradas = new List<Entradas>();
             Contexto contexto = new Contexto();
 
             try
             {
-                vehiculos = contexto.Vehiculos.Where(expression).ToList();
+                entradas = contexto.Entradas.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
@@ -110,7 +110,7 @@ namespace RegistroSegundoParcial.BLL
                 throw;
             }
 
-            return vehiculos;
+            return entradas;
         }
     }
 }

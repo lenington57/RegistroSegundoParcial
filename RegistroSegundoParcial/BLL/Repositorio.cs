@@ -16,7 +16,7 @@ namespace RegistroSegundoParcial.BLL
             _contexto = contexto;
         }
 
-        public T Buscar(int id)
+        public virtual T Buscar(int id)
         {
             T entity;
             try
@@ -85,7 +85,7 @@ namespace RegistroSegundoParcial.BLL
             return paso;
         }
 
-        public bool Modificar(T entity)
+        public virtual bool Modificar(T entity)
         {
             bool paso = false;
             try

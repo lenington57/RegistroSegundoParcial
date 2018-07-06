@@ -134,6 +134,7 @@
             // 
             this.MantenimientoTextBox.Location = new System.Drawing.Point(123, 127);
             this.MantenimientoTextBox.Name = "MantenimientoTextBox";
+            this.MantenimientoTextBox.ReadOnly = true;
             this.MantenimientoTextBox.Size = new System.Drawing.Size(89, 20);
             this.MantenimientoTextBox.TabIndex = 48;
             // 

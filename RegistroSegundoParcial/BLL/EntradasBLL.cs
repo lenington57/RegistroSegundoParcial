@@ -112,6 +112,15 @@ namespace RegistroSegundoParcial.BLL
             }
 
             return entradas;
-        }        
+        }
+
+        public static void LlenarInventario(Entradas entradas)
+        {
+            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
+            {
+                item.Inventario += entradas.Cantidad;
+                ArticulosBLL.Modificar(item);
+            }
+        }
     }
 }

@@ -19,8 +19,6 @@ namespace RegistroSegundoParcial.BLL
             {
                 if (contexto.Mantenimiento.Add(mantenimiento) != null)
                 {
-                    Cantidad(Buscar(mantenimiento.MantenimientoId).Detalle);
-                    CostoMantenimiento(Buscar(mantenimiento.MantenimientoId).Detalle);
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -39,28 +37,6 @@ namespace RegistroSegundoParcial.BLL
             Contexto contexto = new Contexto();
             try
             {
-                var ManteniAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
-
-                foreach (var item in ManteniAnt.Detalle)
-                {
-                    contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento += item.Importe;
-
-                    if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
-                    {
-                        contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento += item.Importe;
-                        item.Articulos = null;
-                        contexto.Entry(item).State = EntityState.Deleted;
-                    }
-                }
-
-                foreach (var item in mantenimiento.Detalle)
-                {
-                    contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento += item.Importe;
-
-                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
-                    contexto.Entry(item).State = estado;
-                }
-
                 contexto.Entry(mantenimiento).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -83,13 +59,6 @@ namespace RegistroSegundoParcial.BLL
             try
             {
                 Mantenimiento mantenimiento = contexto.Mantenimiento.Find(id);
-
-                foreach (var item in mantenimiento.Detalle)
-                {
-                    var articulos = contexto.Mantenimiento.Find(item.MantenimientoId);
-                    mantenimiento.Total -= item.Importe;
-
-                }
                 contexto.Mantenimiento.Remove(mantenimiento);
 
                 if (contexto.SaveChanges() > 0)
@@ -161,28 +130,25 @@ namespace RegistroSegundoParcial.BLL
             return CalImporte;
         }
 
-        public static void CostoMantenimiento(List<MantenimientoDetalle> list)
+        public static void CostoMantenimiento(int total, string nombre)
         {
-            foreach (var item in list)
+
+
+            foreach (var item in VehiculosBLL.GetList(x => x.Descripcion == nombre))
             {
-                var costo = MantenimientoBLL.Buscar(item.MantenimientoId);
 
-                costo.MantenimientoId += item.Importe;
-                MantenimientoBLL.Modificar(costo);
-            }
-
-        }
-
-        public static void Cantidad(List<MantenimientoDetalle> list)
-        {
-            foreach (var item in list)
-            {
-                var cantidad = ArticulosBLL.Buscar(item.ArticuloId);
-
-                cantidad.Inventario -= item.Cantidad;
-                ArticulosBLL.Modificar(cantidad);
+                item.TotalMantenimiento += total;
+                VehiculosBLL.Modificar(item);
             }
         }
 
+        public static void Cantidad(int TotalCantidad, string id)
+        {
+            var ID = Convert.ToInt32(id);
+            var cantidad = ArticulosBLL.Buscar(ID);
+
+            cantidad.Inventario -= TotalCantidad;
+            ArticulosBLL.Modificar(cantidad);
+        }
     }
 }

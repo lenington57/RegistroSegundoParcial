@@ -60,7 +60,6 @@
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Articulos.cs" />
     <Compile Include="Entidades\Entradas.cs" />
-    <Compile Include="Entidades\EntradasDetalle.cs" />
     <Compile Include="Entidades\Mantenimiento.cs" />
     <Compile Include="Entidades\MantenimientoDetalle.cs" />
     <Compile Include="Entidades\Talleres.cs" />

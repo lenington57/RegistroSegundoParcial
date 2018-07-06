@@ -84,7 +84,9 @@ namespace RegistroSegundoParcial.UI.Registros
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            LlenarInventario();
+            //LlenarInventario();
+
+            EntradasBLL.LlenarInventario(LlenaClase());
             
         }
 
@@ -99,7 +101,7 @@ namespace RegistroSegundoParcial.UI.Registros
                 
             else
                 MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            RebajarInventario();
+            //RebajarInventario();
         }
         
         public void LlenarInventario()
@@ -112,14 +114,6 @@ namespace RegistroSegundoParcial.UI.Registros
             }
         }
 
-        public void RebajarInventario()
-        {
-            Entradas entradas = LlenaClase();
-            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
-            {
-                item.Inventario -= entradas.Cantidad;
-                ArticulosBLL.Modificar(item);
-            }
-        }
+        
     }
 }

@@ -17,6 +17,8 @@ namespace RegistroSegundoParcial.DAL
 
         public DbSet<Talleres> Talleres { get; set; }
 
+        public DbSet<Mantenimiento> Mantenimiento { get; set; }
+
         public Contexto() : base("ConStr")
         {
 

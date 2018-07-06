@@ -166,6 +166,7 @@
             this.ArticuloComboBox.Name = "ArticuloComboBox";
             this.ArticuloComboBox.Size = new System.Drawing.Size(106, 21);
             this.ArticuloComboBox.TabIndex = 46;
+            this.ArticuloComboBox.SelectedIndexChanged += new System.EventHandler(this.ArticuloComboBox_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -182,6 +183,7 @@
             this.CantidadNumericUpDown.Name = "CantidadNumericUpDown";
             this.CantidadNumericUpDown.Size = new System.Drawing.Size(76, 20);
             this.CantidadNumericUpDown.TabIndex = 48;
+            this.CantidadNumericUpDown.ValueChanged += new System.EventHandler(this.CantidadNumericUpDown_ValueChanged);
             // 
             // label8
             // 
@@ -261,6 +263,7 @@
             this.GuardarButton.TabIndex = 33;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // NuevoButton
             // 
@@ -272,6 +275,7 @@
             this.NuevoButton.TabIndex = 32;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = true;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // BuscarButton
             // 
@@ -283,6 +287,7 @@
             this.BuscarButton.TabIndex = 31;
             this.BuscarButton.Text = "Buscar";
             this.BuscarButton.UseVisualStyleBackColor = true;
+            this.BuscarButton.Click += new System.EventHandler(this.BuscarButton_Click);
             // 
             // MantenimientoDetalleDataGridView
             // 

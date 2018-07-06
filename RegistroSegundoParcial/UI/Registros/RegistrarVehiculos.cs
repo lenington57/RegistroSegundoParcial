@@ -24,7 +24,7 @@ namespace RegistroSegundoParcial.UI.Registros
 
             vehiculos.VehiculoId = Convert.ToInt32(VehiculoIdNumericUpDown.Value);
             vehiculos.Descripcion = DescripcionTextBox.Text;
-            vehiculos.Mantenimiento = Convert.ToInt32(MantenimientoTextBox.Text);
+            vehiculos.TotalMantenimiento = Convert.ToInt32(MantenimientoTextBox.Text);
 
             return vehiculos;
         }
@@ -37,8 +37,11 @@ namespace RegistroSegundoParcial.UI.Registros
             if (vehiculos != null)
             {
                 DescripcionTextBox.Text = vehiculos.Descripcion;
-                MantenimientoTextBox.Text = vehiculos.Mantenimiento.ToString();
+                MantenimientoTextBox.Text = vehiculos.TotalMantenimiento.ToString();
             }
+            else
+                MessageBox.Show("No se encontró", "Falló",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void NuevoButton_Click(object sender, EventArgs e)

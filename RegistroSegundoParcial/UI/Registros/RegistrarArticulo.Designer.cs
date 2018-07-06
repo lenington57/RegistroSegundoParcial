@@ -188,6 +188,7 @@
             // 
             this.InventarioTextBox.Location = new System.Drawing.Point(260, 163);
             this.InventarioTextBox.Name = "InventarioTextBox";
+            this.InventarioTextBox.ReadOnly = true;
             this.InventarioTextBox.Size = new System.Drawing.Size(100, 20);
             this.InventarioTextBox.TabIndex = 56;
             // 

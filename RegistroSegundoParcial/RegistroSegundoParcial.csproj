@@ -53,12 +53,14 @@
     <Compile Include="BLL\ArticulosBLL.cs" />
     <Compile Include="BLL\EntradasBLL.cs" />
     <Compile Include="BLL\IRepository.cs" />
+    <Compile Include="BLL\MantenimientoBLL.cs" />
     <Compile Include="BLL\Repositorio.cs" />
     <Compile Include="BLL\TalleresBLL.cs" />
     <Compile Include="BLL\VehiculosBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="Entidades\Articulos.cs" />
     <Compile Include="Entidades\Entradas.cs" />
+    <Compile Include="Entidades\EntradasDetalle.cs" />
     <Compile Include="Entidades\Mantenimiento.cs" />
     <Compile Include="Entidades\MantenimientoDetalle.cs" />
     <Compile Include="Entidades\Talleres.cs" />

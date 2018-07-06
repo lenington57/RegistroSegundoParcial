@@ -51,11 +51,15 @@ namespace RegistroSegundoParcial.UI.Registros
                 ArticuloComboBox.Text = entradas.Articulo;
                 CantidadTextBox.Text = entradas.Cantidad.ToString();
             }
+            else
+                MessageBox.Show("No se encontró", "Falló",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
             EntradaIdNumericUpDown.Value = 0;
+            ArticuloComboBox.SelectedIndex = 0;
             FechaDateTimePicker.Value = DateTime.Now;
             CantidadTextBox.Clear();
         }
@@ -70,7 +74,9 @@ namespace RegistroSegundoParcial.UI.Registros
             if (EntradaIdNumericUpDown.Value == 0)
                 Paso = EntradasBLL.Guardar(entradas);
             else
+            {                
                 Paso = EntradasBLL.Modificar(LlenaClase());
+            }               
 
             if (Paso)
                 MessageBox.Show("Guardado", "Exito",
@@ -78,6 +84,8 @@ namespace RegistroSegundoParcial.UI.Registros
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            LlenarInventario();
+            
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
@@ -85,9 +93,33 @@ namespace RegistroSegundoParcial.UI.Registros
             int id = Convert.ToInt32(EntradaIdNumericUpDown.Value);
 
             if (EntradasBLL.Eliminar(id))
+            {
                 MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+                
             else
                 MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            RebajarInventario();
+        }
+        
+        public void LlenarInventario()
+        {
+            Entradas entradas =  LlenaClase();
+            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
+            {
+                item.Inventario += entradas.Cantidad;
+                ArticulosBLL.Modificar(item);
+            }
+        }
+
+        public void RebajarInventario()
+        {
+            Entradas entradas = LlenaClase();
+            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
+            {
+                item.Inventario -= entradas.Cantidad;
+                ArticulosBLL.Modificar(item);
+            }
         }
     }
 }

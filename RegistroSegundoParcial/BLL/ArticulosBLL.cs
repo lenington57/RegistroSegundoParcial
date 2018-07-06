@@ -70,7 +70,7 @@ namespace RegistroSegundoParcial.BLL
                 {
                     paso = true;
                 }
-                contexto.Dispose();//Siempre hay que cerrar la conexión.
+                contexto.Dispose();
             }
             catch (Exception)
             {

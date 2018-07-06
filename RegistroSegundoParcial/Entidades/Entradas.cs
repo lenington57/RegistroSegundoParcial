@@ -19,12 +19,17 @@ namespace RegistroSegundoParcial.Entidades
 
         public int Cantidad { get; set; }
 
+
+        public virtual List<EntradasDetalle> Detalle { get; set; }
+
         public Entradas()
         {
-            EntradaId = 0;
-            Fecha = DateTime.Now;
-            Articulo = string.Empty;
-            Cantidad = 0;
-        }        
+            this.Detalle = new List<EntradasDetalle>();
+        }
+
+        public void AgregarDetalle(int Id, int EntradaId, int ArticuloId, int CantidadInventario)
+        {
+            this.Detalle.Add(new EntradasDetalle(Id, EntradaId, ArticuloId, CantidadInventario));
+        }
     }
 }

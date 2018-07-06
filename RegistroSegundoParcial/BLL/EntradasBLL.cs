@@ -20,6 +20,7 @@ namespace RegistroSegundoParcial.BLL
             {
                 if (contexto.Entradas.Add(entradas) != null)
                 {
+                   
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -39,7 +40,7 @@ namespace RegistroSegundoParcial.BLL
 
             Contexto contexto = new Contexto();
             try
-            {
+            {                
                 contexto.Entry(entradas).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -70,7 +71,7 @@ namespace RegistroSegundoParcial.BLL
                 {
                     paso = true;
                 }
-                contexto.Dispose();//Siempre hay que cerrar la conexión.
+                contexto.Dispose();
             }
             catch (Exception)
             {
@@ -111,6 +112,6 @@ namespace RegistroSegundoParcial.BLL
             }
 
             return entradas;
-        }
+        }        
     }
 }

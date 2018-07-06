@@ -36,6 +36,9 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 NombreTextBox.Text = talleres.Nombre;
             }
+            else
+                MessageBox.Show("No se encontró", "Falló",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void NuevoButton_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
@@ -44,7 +45,9 @@
             this.PctGananciaTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.InventarioTextBox = new System.Windows.Forms.TextBox();
+            this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ArtículoIdNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // EliminarButton
@@ -192,6 +195,10 @@
             this.InventarioTextBox.Size = new System.Drawing.Size(100, 20);
             this.InventarioTextBox.TabIndex = 56;
             // 
+            // MyErrorProvider
+            // 
+            this.MyErrorProvider.ContainerControl = this;
+            // 
             // RegistrarArticulo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,6 +223,7 @@
             this.Name = "RegistrarArticulo";
             this.Text = "Registro de Articulos";
             ((System.ComponentModel.ISupportInitialize)(this.ArtículoIdNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +247,6 @@
         private System.Windows.Forms.TextBox PctGananciaTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox InventarioTextBox;
+        private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }

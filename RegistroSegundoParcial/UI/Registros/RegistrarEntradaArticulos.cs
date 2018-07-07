@@ -20,6 +20,7 @@ namespace RegistroSegundoParcial.UI.Registros
             LlenarComboBox();
         }
 
+        //Métodos
         private void LlenarComboBox()
         {
             Repositorio<Articulos> ArtRepositorio = new Repositorio<Articulos>(new Contexto());
@@ -41,6 +42,31 @@ namespace RegistroSegundoParcial.UI.Registros
             return entradas;
         }
 
+        private void Limpiar()
+        {
+            EntradaIdNumericUpDown.Value = 0;
+            ArticuloComboBox.SelectedIndex = 0;
+            FechaDateTimePicker.Value = DateTime.Now;
+            CantidadTextBox.Clear();
+            MyErrorProvider.Clear();
+        }
+
+        private bool HayErrores()
+        {
+            bool HayErrores = false;
+
+            if (String.IsNullOrWhiteSpace(CantidadTextBox.Text))
+            {
+                MyErrorProvider.SetError(CantidadTextBox,
+                    "Debes escribir una Cantidad para el Artículo");
+                HayErrores = true;
+            }           
+
+            return HayErrores;
+        }
+
+
+        //Programación de los Botones
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(EntradaIdNumericUpDown.Value);
@@ -58,16 +84,20 @@ namespace RegistroSegundoParcial.UI.Registros
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            EntradaIdNumericUpDown.Value = 0;
-            ArticuloComboBox.SelectedIndex = 0;
-            FechaDateTimePicker.Value = DateTime.Now;
-            CantidadTextBox.Clear();
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             Entradas entradas;
             bool Paso = false;
+
+            if (HayErrores())
+            {
+                MessageBox.Show("Debe llenar éste campo!!!", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             entradas = LlenaClase();
 
@@ -76,44 +106,39 @@ namespace RegistroSegundoParcial.UI.Registros
             else
             {                
                 Paso = EntradasBLL.Modificar(LlenaClase());
-            }               
+            }
 
             if (Paso)
+            {
                 MessageBox.Show("Guardado", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                EntradasBLL.LlenarInventario(LlenaClase());
+                Limpiar();
+            }
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //LlenarInventario();
-
-            EntradasBLL.LlenarInventario(LlenaClase());
-            
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);            
         }
 
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(EntradaIdNumericUpDown.Value);
+            Entradas entradas = EntradasBLL.Buscar(id);
 
-            if (EntradasBLL.Eliminar(id))
+            if (entradas != null)
             {
-                MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (EntradasBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    EntradasBLL.RebajarInventario(LlenaClase());
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-                
             else
-                MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //RebajarInventario();
-        }
-        
-        public void LlenarInventario()
-        {
-            Entradas entradas =  LlenaClase();
-            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
-            {
-                item.Inventario += entradas.Cantidad;
-                ArticulosBLL.Modificar(item);
-            }
-        }
-
+                MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }    
         
     }
 }

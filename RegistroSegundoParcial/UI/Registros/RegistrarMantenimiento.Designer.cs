@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.MantenimientoIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,9 +60,11 @@
             this.SubTotalTextBox = new System.Windows.Forms.TextBox();
             this.ItbisTextBox = new System.Windows.Forms.TextBox();
             this.TotalTextBox = new System.Windows.Forms.TextBox();
+            this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoDetalleDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -198,6 +201,7 @@
             // 
             this.PrecioTextBox.Location = new System.Drawing.Point(241, 227);
             this.PrecioTextBox.Name = "PrecioTextBox";
+            this.PrecioTextBox.ReadOnly = true;
             this.PrecioTextBox.Size = new System.Drawing.Size(79, 20);
             this.PrecioTextBox.TabIndex = 50;
             // 
@@ -252,6 +256,7 @@
             this.EliminarButton.TabIndex = 34;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 
@@ -348,6 +353,10 @@
             this.TotalTextBox.Size = new System.Drawing.Size(100, 20);
             this.TotalTextBox.TabIndex = 61;
             // 
+            // MyErrorProvider
+            // 
+            this.MyErrorProvider.ContainerControl = this;
+            // 
             // RegistrarMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +399,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoDetalleDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -428,5 +438,6 @@
         private System.Windows.Forms.TextBox SubTotalTextBox;
         private System.Windows.Forms.TextBox ItbisTextBox;
         private System.Windows.Forms.TextBox TotalTextBox;
+        private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }

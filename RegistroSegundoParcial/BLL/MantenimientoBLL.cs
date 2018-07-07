@@ -18,6 +18,11 @@ namespace RegistroSegundoParcial.BLL
             try
             {
                 if (contexto.Mantenimiento.Add(mantenimiento) != null)
+
+                    foreach (var item in mantenimiento.Detalle)
+                    {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    }
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -37,6 +42,28 @@ namespace RegistroSegundoParcial.BLL
             Contexto contexto = new Contexto();
             try
             {
+                var MantetAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
+
+                foreach (var item in MantetAnt.Detalle)
+                {
+                    contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+
+                    if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
+                    {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                        item.Articulos = null;
+                        contexto.Entry(item).State = EntityState.Deleted;
+                    }
+                }
+                
+                foreach (var item in mantenimiento.Detalle)
+                {
+                    contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    
+                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                    contexto.Entry(item).State = estado;
+                }
+
                 contexto.Entry(mantenimiento).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -59,6 +86,13 @@ namespace RegistroSegundoParcial.BLL
             try
             {
                 Mantenimiento mantenimiento = contexto.Mantenimiento.Find(id);
+
+                foreach (var item in mantenimiento.Detalle)
+                {
+                    var EliminInventario = contexto.Articulos.Find(item.ArticuloId);
+                    EliminInventario.Inventario -= item.Cantidad;
+                }
+
                 contexto.Mantenimiento.Remove(mantenimiento);
 
                 if (contexto.SaveChanges() > 0)
@@ -132,8 +166,6 @@ namespace RegistroSegundoParcial.BLL
 
         public static void CostoMantenimiento(int total, string nombre)
         {
-
-
             foreach (var item in VehiculosBLL.GetList(x => x.Descripcion == nombre))
             {
 
@@ -142,13 +174,14 @@ namespace RegistroSegundoParcial.BLL
             }
         }
 
-        public static void Cantidad(int TotalCantidad, string id)
+        public static void Cantidad(int Cantidad, string descripcion)
         {
-            var ID = Convert.ToInt32(id);
-            var cantidad = ArticulosBLL.Buscar(ID);
-
-            cantidad.Inventario -= TotalCantidad;
-            ArticulosBLL.Modificar(cantidad);
+            foreach (var item in ArticulosBLL.GetList(x => x.Descripcion == descripcion))
+            {
+                item.Inventario -= Cantidad;
+                ArticulosBLL.Modificar(item);
+            }
         }
+
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
@@ -40,7 +41,9 @@
             this.FechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.ArticuloComboBox = new System.Windows.Forms.ComboBox();
             this.CantidadTextBox = new System.Windows.Forms.TextBox();
+            this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.EntradaIdNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // EliminarButton
@@ -158,6 +161,10 @@
             this.CantidadTextBox.Size = new System.Drawing.Size(165, 20);
             this.CantidadTextBox.TabIndex = 50;
             // 
+            // MyErrorProvider
+            // 
+            this.MyErrorProvider.ContainerControl = this;
+            // 
             // RegistrarEntradaArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +185,7 @@
             this.Name = "RegistrarEntradaArticulos";
             this.Text = "Registro de Entrada de Artículos";
             ((System.ComponentModel.ISupportInitialize)(this.EntradaIdNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,5 +205,6 @@
         private System.Windows.Forms.DateTimePicker FechaDateTimePicker;
         private System.Windows.Forms.ComboBox ArticuloComboBox;
         private System.Windows.Forms.TextBox CantidadTextBox;
+        private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }

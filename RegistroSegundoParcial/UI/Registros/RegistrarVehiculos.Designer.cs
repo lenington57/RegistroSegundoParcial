@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
@@ -38,7 +39,9 @@
             this.DescripcionTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.MantenimientoTextBox = new System.Windows.Forms.TextBox();
+            this.MyErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.VehiculoIdNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // EliminarButton
@@ -138,6 +141,10 @@
             this.MantenimientoTextBox.Size = new System.Drawing.Size(89, 20);
             this.MantenimientoTextBox.TabIndex = 48;
             // 
+            // MyErrorProvider
+            // 
+            this.MyErrorProvider.ContainerControl = this;
+            // 
             // RegistrarVehiculos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -156,6 +163,7 @@
             this.Name = "RegistrarVehiculos";
             this.Text = "Registro de Vehículos";
             ((System.ComponentModel.ISupportInitialize)(this.VehiculoIdNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MyErrorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +181,6 @@
         private System.Windows.Forms.TextBox DescripcionTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox MantenimientoTextBox;
+        private System.Windows.Forms.ErrorProvider MyErrorProvider;
     }
 }

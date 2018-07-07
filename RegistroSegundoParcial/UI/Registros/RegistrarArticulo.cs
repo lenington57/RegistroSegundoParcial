@@ -18,6 +18,7 @@ namespace RegistroSegundoParcial.UI.Registros
             InitializeComponent();
         }
 
+        //Métodos
         private Articulos LlenaClase()
         {
             Articulos articulos = new Articulos();
@@ -32,6 +33,61 @@ namespace RegistroSegundoParcial.UI.Registros
             return articulos;
         }
 
+        private void Limpiar()
+        {
+            ArtículoIdNumericUpDown.Value = 0;
+            DescripcionTextBox.Clear();
+            CostoTextBox.Clear();
+            PrecioTextBox.Clear();
+            PctGananciaTextBox.Clear();
+            InventarioTextBox.Clear();
+            MyErrorProvider.Clear();
+        }
+
+        private bool HayErrores()
+        {
+            bool HayErrores = false;
+
+            if (String.IsNullOrWhiteSpace(DescripcionTextBox.Text))
+            {
+                MyErrorProvider.SetError(DescripcionTextBox,
+                    "Debes escribir una Decripción para el Artículo");
+                HayErrores = true;
+            }
+
+            if (String.IsNullOrWhiteSpace(CostoTextBox.Text))
+            {
+                MyErrorProvider.SetError(CostoTextBox,
+                    "Debes digitar un Costo para el Artículo");
+                HayErrores = true;
+            }
+
+            if (String.IsNullOrWhiteSpace(PrecioTextBox.Text))
+            {
+                MyErrorProvider.SetError(PrecioTextBox,
+                    "Debes digitar un Precio para el Artículo");
+                HayErrores = true;
+            }            
+
+            if (String.IsNullOrWhiteSpace(PctGananciaTextBox.Text) && String.IsNullOrWhiteSpace(CostoTextBox.Text))
+            {
+                MyErrorProvider.SetError(CostoTextBox,
+                    "Debes digitar un Costo que desea del Artículo");
+                HayErrores = true;
+            }
+
+            if (String.IsNullOrWhiteSpace(PctGananciaTextBox.Text) && String.IsNullOrWhiteSpace(PrecioTextBox.Text))
+            {
+                MyErrorProvider.SetError(PrecioTextBox,
+                    "Debes digitar un Precio para el Artículo");
+                HayErrores = true;
+            }
+
+            return HayErrores;
+        }
+
+
+        //Programación de los Botones
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(ArtículoIdNumericUpDown.Value);
@@ -46,24 +102,26 @@ namespace RegistroSegundoParcial.UI.Registros
                 InventarioTextBox.Text = articulos.Inventario.ToString();
             }
             else
-                MessageBox.Show("No se encontró", "Fallo",
+                MessageBox.Show("No se encontró", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            ArtículoIdNumericUpDown.Value = 0;
-            DescripcionTextBox.Clear();
-            CostoTextBox.Clear();
-            PrecioTextBox.Clear();
-            PctGananciaTextBox.Clear();
-            InventarioTextBox.Clear();
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             Articulos articulos;
             bool Paso = false;
+
+            if (HayErrores())
+            {
+                MessageBox.Show("Debe llenar todos los campos que se indican!!!", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             articulos = LlenaClase();
 
@@ -73,8 +131,11 @@ namespace RegistroSegundoParcial.UI.Registros
                 Paso = ArticulosBLL.Modificar(LlenaClase());
 
             if (Paso)
+            {
                 MessageBox.Show("Guardado", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -84,10 +145,20 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             int id = Convert.ToInt32(ArtículoIdNumericUpDown.Value);
 
-            if (ArticulosBLL.Eliminar(id))
-                MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Articulos articulos = ArticulosBLL.Buscar(id);
+            if (articulos != null)
+            {
+                if (ArticulosBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+
+                else
+                    MessageBox.Show("No se pudo eliminar!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
             else
-                MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

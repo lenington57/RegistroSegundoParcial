@@ -18,6 +18,7 @@ namespace RegistroSegundoParcial.UI.Registros
             InitializeComponent();
         }
 
+        //Métodos
         private Talleres LlenaClase()
         {
             Talleres talleres  = new Talleres();
@@ -28,6 +29,28 @@ namespace RegistroSegundoParcial.UI.Registros
             return talleres;
         }
 
+        private void Limpiar()
+        {
+            TallerIdNumericUpDown.Value = 0;
+            NombreTextBox.Clear();
+        }
+
+        private bool HayErrores()
+        {
+            bool HayErrores = false;
+
+            if (String.IsNullOrWhiteSpace(NombreTextBox.Text))
+            {
+                MyErrorProvider.SetError(NombreTextBox,
+                    "Debes escribir un Nombre para el Taller");
+                HayErrores = true;
+            }
+
+            return HayErrores;
+        }
+
+
+        //Programación de los Botones
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(TallerIdNumericUpDown.Value);
@@ -43,8 +66,7 @@ namespace RegistroSegundoParcial.UI.Registros
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            TallerIdNumericUpDown.Value = 0;
-            NombreTextBox.Clear();
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -52,16 +74,27 @@ namespace RegistroSegundoParcial.UI.Registros
             Talleres talleres;
             bool Paso = false;
 
+
+            if (HayErrores())
+            {
+                MessageBox.Show("Debe llenar éste campo!!!", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             talleres = LlenaClase();
             
             if (TallerIdNumericUpDown.Value == 0)
                 Paso = TalleresBLL.Guardar(talleres);
             else
                 Paso = TalleresBLL.Modificar(LlenaClase());
-            
+
             if (Paso)
+            {
                 MessageBox.Show("Guardado", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -71,13 +104,22 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             int id = Convert.ToInt32(TallerIdNumericUpDown.Value);
 
-            if (TalleresBLL.Eliminar(id))
-                MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Talleres talleres = TalleresBLL.Buscar(id);
+            if (talleres != null)
+            {
+                if (TalleresBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("No se pudo eliminar!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
-                MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void RegistrarTalleres_Load(object sender, EventArgs e)
+            private void RegistrarTalleres_Load(object sender, EventArgs e)
         {
 
         }

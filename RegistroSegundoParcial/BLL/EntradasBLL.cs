@@ -122,5 +122,16 @@ namespace RegistroSegundoParcial.BLL
                 ArticulosBLL.Modificar(item);
             }
         }
+
+
+        public static void RebajarInventario(Entradas entradas)
+        {
+            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
+            {
+                item.Inventario -= entradas.Cantidad;
+                ArticulosBLL.Modificar(item);
+            }
+        }
+
     }
 }

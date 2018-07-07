@@ -58,6 +58,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BLL\ArticulosBLLTests.cs" />
+    <Compile Include="BLL\EntradasBLLTests.cs" />
+    <Compile Include="BLL\MantenimientoBLLTests.cs" />
     <Compile Include="BLL\TalleresBLLTests.cs" />
     <Compile Include="BLL\VehiculosBLLTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

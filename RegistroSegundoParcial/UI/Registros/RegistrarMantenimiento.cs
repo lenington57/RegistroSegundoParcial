@@ -21,6 +21,7 @@ namespace RegistroSegundoParcial.UI.Registros
             CalcularFecha();
         }
 
+        //Métodos       
         private void LlenarCampos(Mantenimiento mantenimiento)
         {
             MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
@@ -82,7 +83,7 @@ namespace RegistroSegundoParcial.UI.Registros
                     ToInt(item.Cells["VehiculoId"].Value),
                     ToInt(item.Cells["TallerId"].Value),
                     ToInt(item.Cells["ArticuloId"].Value),
-                    "Articulo",
+                    item.Cells["Articulo"].ToString(),
                     ToInt(item.Cells["Cantidad"].Value),
                     ToInt(item.Cells["Precio"].Value),
                     ToInt(item.Cells["Importe"].Value)
@@ -91,6 +92,26 @@ namespace RegistroSegundoParcial.UI.Registros
 
             return mantenimiento;
         }
+
+        private void Limpiar()
+        {
+            MantenimientoIdNumericUpDown.Value = 0;
+            FechaDateTimePicker.Value = DateTime.Now;
+            ArticuloComboBox.SelectedIndex = 0;
+            CantidadNumericUpDown.Value = 0;
+            PrecioTextBox.Clear();
+            ImporteTextBox.Clear();
+            MantenimientoDetalleDataGridView.DataSource = null;
+            SubTotalTextBox.Clear();
+            ItbisTextBox.Clear();
+            TotalTextBox.Clear();
+        }
+
+        private void CalcularFecha()
+        {
+            ProxManteDateTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
+        }
+
 
         private void LlenarPrecio()
         {
@@ -106,7 +127,7 @@ namespace RegistroSegundoParcial.UI.Registros
             ImporteTextBox.Text = MantenimientoBLL.Importe(Convert.ToSingle(CantidadNumericUpDown.Value), Convert.ToSingle(PrecioTextBox.Text)).ToString();
         }
 
-        private void LlenarTotal()
+        private void LlenarValores()
         {
             List<MantenimientoDetalle> detalle = new List<MantenimientoDetalle>();
 
@@ -128,7 +149,7 @@ namespace RegistroSegundoParcial.UI.Registros
             TotalTextBox.Text = Total.ToString();
         }
 
-        private void RebajarTotal()
+        private void RebajarValores()
         {
             List<MantenimientoDetalle> detalle = new List<MantenimientoDetalle>();
 
@@ -151,11 +172,29 @@ namespace RegistroSegundoParcial.UI.Registros
             TotalTextBox.Text = Total.ToString();
         }
 
-        private void RegistrarMantenimiento_Load(object sender, EventArgs e)
+        private bool HayErrores()
         {
+            bool HayErrores = false;
 
+            if (CantidadNumericUpDown.Value == 0)
+            {
+                MyErrorProvider.SetError(CantidadNumericUpDown,
+                    "Debe digitar una Cantidad");
+                HayErrores = true;
+            }
+
+            if (MantenimientoDetalleDataGridView.RowCount == 0)
+            {
+                MyErrorProvider.SetError(MantenimientoDetalleDataGridView,
+                    "Debe Agregar los Artículos ");
+                HayErrores = true;
+            }          
+
+            return HayErrores;
         }
 
+
+        //Programación de los Botones
         private void AgregarButtton_Click(object sender, EventArgs e)
         {
             List<MantenimientoDetalle> detalle = new List<MantenimientoDetalle>();
@@ -181,7 +220,7 @@ namespace RegistroSegundoParcial.UI.Registros
             MantenimientoDetalleDataGridView.DataSource = null;
             MantenimientoDetalleDataGridView.DataSource = detalle;
 
-            LlenarTotal();
+            LlenarValores();
         }
 
         private void RemoverButton_Click(object sender, EventArgs e)
@@ -189,13 +228,21 @@ namespace RegistroSegundoParcial.UI.Registros
             if (MantenimientoDetalleDataGridView.Rows.Count > 0 && MantenimientoDetalleDataGridView.CurrentRow != null)
             {
                 List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
-                
+
+                int Inventario = 0;
+                string NombreArticulo = string.Empty;
+                foreach (var item in detalle)
+                {
+                    Inventario += item.Cantidad;
+                    NombreArticulo = item.Articulo;
+                }
+                MantenimientoBLL.Cantidad(Inventario, NombreArticulo);
                 detalle.RemoveAt(MantenimientoDetalleDataGridView.CurrentRow.Index);
                 
                 MantenimientoDetalleDataGridView.DataSource = null;
                 MantenimientoDetalleDataGridView.DataSource = detalle;
 
-                RebajarTotal();
+                RebajarValores();
             }
         }
 
@@ -215,15 +262,7 @@ namespace RegistroSegundoParcial.UI.Registros
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            MantenimientoIdNumericUpDown.Value = 0;
-            FechaDateTimePicker.Value = DateTime.Now;
-            CantidadNumericUpDown.Value = 0;
-            PrecioTextBox.Clear();
-            ImporteTextBox.Clear();
-            MantenimientoDetalleDataGridView.DataSource = null;
-            SubTotalTextBox.Clear();
-            ItbisTextBox.Clear();
-            TotalTextBox.Clear();
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
@@ -244,18 +283,35 @@ namespace RegistroSegundoParcial.UI.Registros
                 NuevoButton.PerformClick();
                 MessageBox.Show("Guardado!!", "Exito",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
             }
             else
                 MessageBox.Show("No se pudo guardar!!", "Fallo",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
-        private void CalcularFecha()
+        private void EliminarButton_Click(object sender, EventArgs e)
         {
-            ProxManteDateTimePicker.Value = FechaDateTimePicker.Value.AddMonths(3);
+            int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
+
+            Mantenimiento mantenimiento = MantenimientoBLL.Buscar(id);
+
+            if (mantenimiento != null)
+            {
+                if (MantenimientoBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+
+        //Eventos de los componentes
         private void CantidadNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             LlenarPrecio();
@@ -265,6 +321,11 @@ namespace RegistroSegundoParcial.UI.Registros
         private void ArticuloComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LlenarPrecio();
+        }
+
+        private void RegistrarMantenimiento_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

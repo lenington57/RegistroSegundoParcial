@@ -18,17 +18,41 @@ namespace RegistroSegundoParcial.UI.Registros
             InitializeComponent();
         }
 
+        //Métodos
         private Vehiculos LlenaClase()
         {
             Vehiculos vehiculos = new Vehiculos();
 
             vehiculos.VehiculoId = Convert.ToInt32(VehiculoIdNumericUpDown.Value);
             vehiculos.Descripcion = DescripcionTextBox.Text;
-            vehiculos.TotalMantenimiento = Convert.ToInt32(MantenimientoTextBox.Text);
+            vehiculos.TotalMantenimiento = 0;
 
             return vehiculos;
         }
 
+        private void Limpiar()
+        {
+            VehiculoIdNumericUpDown.Value = 0;
+            DescripcionTextBox.Clear();
+            MantenimientoTextBox.Clear();
+        }
+
+        private bool HayErrores()
+        {
+            bool HayErrores = false;
+
+            if (String.IsNullOrWhiteSpace(DescripcionTextBox.Text))
+            {
+                MyErrorProvider.SetError(DescripcionTextBox,
+                    "Debes escribir una Descripción para el Vehículo");
+                HayErrores = true;
+            }
+
+            return HayErrores;
+        }
+
+
+        //Programación de los Botones
         private void BuscarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(VehiculoIdNumericUpDown.Value);
@@ -46,15 +70,20 @@ namespace RegistroSegundoParcial.UI.Registros
 
         private void NuevoButton_Click(object sender, EventArgs e)
         {
-            VehiculoIdNumericUpDown.Value = 0;
-            DescripcionTextBox.Clear();
-            MantenimientoTextBox.Clear();
+            Limpiar();
         }
 
         private void GuardarButton_Click(object sender, EventArgs e)
         {
             Vehiculos vehiculos;
             bool Paso = false;
+
+            if (HayErrores())
+            {
+                MessageBox.Show("Debe llenar éste campo!!!", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             vehiculos = LlenaClase();
 
@@ -64,8 +93,12 @@ namespace RegistroSegundoParcial.UI.Registros
                 Paso = VehiculosBLL.Modificar(LlenaClase());
 
             if (Paso)
+            {
                 MessageBox.Show("Guardado", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
+            }
+               
             else
                 MessageBox.Show("No se pudo guardar", "Falló",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,11 +107,21 @@ namespace RegistroSegundoParcial.UI.Registros
         private void EliminarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(VehiculoIdNumericUpDown.Value);
+            Vehiculos vehiculos = VehiculosBLL.Buscar(id);
 
-            if (VehiculosBLL.Eliminar(id))
-                MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (vehiculos != null)
+            {
+                if (VehiculosBLL.Eliminar(id))
+                {
+                    MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpiar();
+                }
+                else
+                    MessageBox.Show("No se pudo eliminar!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
-                MessageBox.Show("No se pudo eliminar!!", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
     }
 }

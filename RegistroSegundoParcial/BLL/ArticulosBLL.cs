@@ -114,5 +114,16 @@ namespace RegistroSegundoParcial.BLL
 
             return articulos;
         }
+
+        public static double PorcientoGanancia(double costo, double precio)
+        {
+            double PctGanancia;
+
+            PctGanancia = precio - costo;
+            PctGanancia = PctGanancia / costo;
+            PctGanancia *= 100;
+
+            return PctGanancia;
+        }
     }
 }

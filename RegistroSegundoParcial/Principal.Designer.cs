@@ -31,14 +31,19 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AyudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.registrarArticulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarEntradasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarTalleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarVehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarMantenimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarArtículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarEntradasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarTalleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarVehículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarMantenimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AyudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,26 +77,6 @@
             this.registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
             this.registrosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.registrosToolStripMenuItem.Text = "Registros";
-            // 
-            // consultasToolStripMenuItem
-            // 
-            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
-            this.consultasToolStripMenuItem.Text = "Consultas";
-            // 
-            // AyudaToolStripMenuItem
-            // 
-            this.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem";
-            this.AyudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.AyudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(282, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
             // 
             // registrarArticulosToolStripMenuItem
             // 
@@ -128,6 +113,67 @@
             this.registrarMantenimientosToolStripMenuItem.Text = "Registrar Mantenimientos";
             this.registrarMantenimientosToolStripMenuItem.Click += new System.EventHandler(this.registrarMantenimientosToolStripMenuItem_Click);
             // 
+            // consultasToolStripMenuItem
+            // 
+            this.consultasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.consultarArtículosToolStripMenuItem,
+            this.consultarEntradasToolStripMenuItem,
+            this.consultarTalleresToolStripMenuItem,
+            this.consultarVehículosToolStripMenuItem,
+            this.consultarMantenimientosToolStripMenuItem});
+            this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.consultasToolStripMenuItem.Text = "Consultas";
+            // 
+            // consultarArtículosToolStripMenuItem
+            // 
+            this.consultarArtículosToolStripMenuItem.Name = "consultarArtículosToolStripMenuItem";
+            this.consultarArtículosToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.consultarArtículosToolStripMenuItem.Text = "Consultar Artículos";
+            this.consultarArtículosToolStripMenuItem.Click += new System.EventHandler(this.consultarArtículosToolStripMenuItem_Click);
+            // 
+            // consultarEntradasToolStripMenuItem
+            // 
+            this.consultarEntradasToolStripMenuItem.Name = "consultarEntradasToolStripMenuItem";
+            this.consultarEntradasToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.consultarEntradasToolStripMenuItem.Text = "Consultar Entradas";
+            this.consultarEntradasToolStripMenuItem.Click += new System.EventHandler(this.consultarEntradasToolStripMenuItem_Click);
+            // 
+            // consultarTalleresToolStripMenuItem
+            // 
+            this.consultarTalleresToolStripMenuItem.Name = "consultarTalleresToolStripMenuItem";
+            this.consultarTalleresToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.consultarTalleresToolStripMenuItem.Text = "Consultar Talleres";
+            this.consultarTalleresToolStripMenuItem.Click += new System.EventHandler(this.consultarTalleresToolStripMenuItem_Click);
+            // 
+            // consultarVehículosToolStripMenuItem
+            // 
+            this.consultarVehículosToolStripMenuItem.Name = "consultarVehículosToolStripMenuItem";
+            this.consultarVehículosToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.consultarVehículosToolStripMenuItem.Text = "Consultar Vehículos";
+            this.consultarVehículosToolStripMenuItem.Click += new System.EventHandler(this.consultarVehículosToolStripMenuItem_Click);
+            // 
+            // consultarMantenimientosToolStripMenuItem
+            // 
+            this.consultarMantenimientosToolStripMenuItem.Name = "consultarMantenimientosToolStripMenuItem";
+            this.consultarMantenimientosToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.consultarMantenimientosToolStripMenuItem.Text = "Consultar Mantenimientos";
+            this.consultarMantenimientosToolStripMenuItem.Click += new System.EventHandler(this.consultarMantenimientosToolStripMenuItem_Click);
+            // 
+            // AyudaToolStripMenuItem
+            // 
+            this.AyudaToolStripMenuItem.Name = "AyudaToolStripMenuItem";
+            this.AyudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.AyudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(282, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +185,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Principal";
             this.Text = "Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -159,6 +206,11 @@
         private System.Windows.Forms.ToolStripMenuItem registrarTalleresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarVehiculosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarMantenimientosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarArtículosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarEntradasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarTalleresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarVehículosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem consultarMantenimientosToolStripMenuItem;
     }
 }
 

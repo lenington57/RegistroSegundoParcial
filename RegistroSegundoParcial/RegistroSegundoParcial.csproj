@@ -72,11 +72,35 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Consultas\Consultar.cs">
+    <Compile Include="UI\Consultas\ConsultarArticulos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Consultas\Consultar.Designer.cs">
-      <DependentUpon>Consultar.cs</DependentUpon>
+    <Compile Include="UI\Consultas\ConsultarArticulos.Designer.cs">
+      <DependentUpon>ConsultarArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarEntradasArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarEntradasArticulos.Designer.cs">
+      <DependentUpon>ConsultarEntradasArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarMantenimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarMantenimientos.Designer.cs">
+      <DependentUpon>ConsultarMantenimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarTalleres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarTalleres.Designer.cs">
+      <DependentUpon>ConsultarTalleres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Consultas\ConsultarVehiculos.Designer.cs">
+      <DependentUpon>ConsultarVehiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registros\RegistrarArticulo.cs">
       <SubType>Form</SubType>
@@ -121,8 +145,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UI\Consultas\Consultar.resx">
-      <DependentUpon>Consultar.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Consultas\ConsultarArticulos.resx">
+      <DependentUpon>ConsultarArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultarEntradasArticulos.resx">
+      <DependentUpon>ConsultarEntradasArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultarMantenimientos.resx">
+      <DependentUpon>ConsultarMantenimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultarTalleres.resx">
+      <DependentUpon>ConsultarTalleres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Consultas\ConsultarVehiculos.resx">
+      <DependentUpon>ConsultarVehiculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registros\RegistrarArticulo.resx">
       <DependentUpon>RegistrarArticulo.cs</DependentUpon>

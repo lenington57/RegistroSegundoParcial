@@ -160,5 +160,36 @@ namespace RegistroSegundoParcial.UI.Registros
             else
                 MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void PrecioTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (PrecioTextBox.Text != string.Empty)
+            {
+                double costo, precio;
+                costo = ToDouble(CostoTextBox.Text);
+                precio = ToDouble(PrecioTextBox.Text);
+                PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
+            }
+        }
+
+        private void CostoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (PrecioTextBox.Text != string.Empty)
+            {
+                double costo, precio;
+                costo = ToDouble(CostoTextBox.Text);
+                precio = ToDouble(PrecioTextBox.Text);
+                PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
+            }               
+            
+        }
+
+        private double ToDouble(object valor)
+        {
+            double retorno = 0;
+            double.TryParse(valor.ToString(), out retorno);
+
+            return Convert.ToDouble(retorno);
+        }
     }
 }

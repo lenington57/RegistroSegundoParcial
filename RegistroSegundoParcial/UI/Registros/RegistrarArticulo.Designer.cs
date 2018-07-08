@@ -145,6 +145,7 @@
             this.CostoTextBox.Name = "CostoTextBox";
             this.CostoTextBox.Size = new System.Drawing.Size(100, 20);
             this.CostoTextBox.TabIndex = 50;
+            this.CostoTextBox.TextChanged += new System.EventHandler(this.CostoTextBox_TextChanged);
             // 
             // label4
             // 
@@ -161,6 +162,7 @@
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.Size = new System.Drawing.Size(100, 20);
             this.PrecioTextBox.TabIndex = 52;
+            this.PrecioTextBox.TextChanged += new System.EventHandler(this.PrecioTextBox_TextChanged);
             // 
             // label5
             // 

@@ -14,13 +14,13 @@ namespace RegistroSegundoParcial.Entidades
 
         public string Descripcion { get; set; }
 
-        public int Costo { get; set; }
+        public double Costo { get; set; }
 
-        public int Precio { get; set; }
+        public double Precio { get; set; }
 
-        public int PorcientoGanacia { get; set; }
+        public double PorcientoGanacia { get; set; }
 
-        public int Inventario { get; set; }
+        public double Inventario { get; set; }
 
 
         public Articulos()

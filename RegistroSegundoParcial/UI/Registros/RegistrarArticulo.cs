@@ -25,9 +25,9 @@ namespace RegistroSegundoParcial.UI.Registros
 
             articulos.ArticuloId = Convert.ToInt32(ArtículoIdNumericUpDown.Value);
             articulos.Descripcion = DescripcionTextBox.Text;
-            articulos.Costo = Convert.ToInt32(CostoTextBox.Text);
-            articulos.Precio = Convert.ToInt32(PrecioTextBox.Text);
-            articulos.PorcientoGanacia = Convert.ToInt32(PctGananciaTextBox.Text);
+            articulos.Costo = Convert.ToDouble(CostoTextBox.Text);
+            articulos.Precio = Convert.ToDouble(PrecioTextBox.Text);
+            articulos.PorcientoGanacia = Convert.ToDouble(PctGananciaTextBox.Text);
             articulos.Inventario = 0;
 
             return articulos;

@@ -155,16 +155,16 @@ namespace RegistroSegundoParcial.BLL
             return mantenimiento;
         }
 
-        public static float Importe(float cantidad, float precio)
+        public static double Importe(double cantidad, double precio)
         {
-            float CalImporte = 0;
+            double CalImporte = 0;
 
             CalImporte = cantidad * precio;
 
             return CalImporte;
         }
 
-        public static void CostoMantenimiento(int total, string nombre)
+        public static void CostoMantenimiento(double total, string nombre)
         {
             foreach (var item in VehiculosBLL.GetList(x => x.Descripcion == nombre))
             {
@@ -174,11 +174,11 @@ namespace RegistroSegundoParcial.BLL
             }
         }
 
-        public static void Cantidad(int Cantidad, string descripcion)
+        public static void Cantidad(double Cantidad, string descripcion)
         {
             foreach (var item in ArticulosBLL.GetList(x => x.Descripcion == descripcion))
             {
-                item.Inventario -= Cantidad;
+                item.Inventario += Cantidad;
                 ArticulosBLL.Modificar(item);
             }
         }

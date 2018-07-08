@@ -23,11 +23,11 @@ namespace RegistroSegundoParcial.Entidades
 
         public string Articulo { get; set; }
 
-        public int Cantidad { get; set; }
+        public double Cantidad { get; set; }
 
-        public int Precio { get; set; }
+        public double Precio { get; set; }
 
-        public int Importe { get; set; }      
+        public double Importe { get; set; }      
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
@@ -51,7 +51,7 @@ namespace RegistroSegundoParcial.Entidades
             Importe = 0;
         }
 
-        public MantenimientoDetalle(int id, int mantenimientoId, int vehiculoId, int tallerId, int articuloId, string articulo, int cantidad, int precio, int importe)
+        public MantenimientoDetalle(int id, int mantenimientoId, int vehiculoId, int tallerId, int articuloId, string articulo, double cantidad, double precio, double importe)
         {
             Id = id;
             MantenimientoId = mantenimientoId;

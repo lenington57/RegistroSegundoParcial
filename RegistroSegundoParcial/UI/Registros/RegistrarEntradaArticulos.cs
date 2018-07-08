@@ -37,7 +37,7 @@ namespace RegistroSegundoParcial.UI.Registros
             entradas.EntradaId = Convert.ToInt32(EntradaIdNumericUpDown.Value);
             entradas.Fecha = FechaDateTimePicker.Value;
             entradas.Articulo = ArticuloComboBox.Text;
-            entradas.Cantidad = Convert.ToInt32(CantidadTextBox.Text);
+            entradas.Cantidad = Convert.ToDouble(CantidadTextBox.Text);
 
             return entradas;
         }

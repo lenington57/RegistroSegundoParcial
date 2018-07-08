@@ -16,7 +16,7 @@ namespace RegistroSegundoParcial.UI.Registros
     {
         public RegistrarMantenimiento()
         {
-            InitializeComponent();
+            InitializeComponent();                       
             LlenarComboBox();
             CalcularFecha();
         }
@@ -64,6 +64,14 @@ namespace RegistroSegundoParcial.UI.Registros
             return retorno;
         }
 
+        private double ToDouble(object valor)
+        {
+            double retorno = 0;
+            double.TryParse(valor.ToString(), out retorno);
+
+            return Convert.ToDouble(retorno);
+        }
+
         private Mantenimiento LlenaClase()
         {
             Mantenimiento mantenimiento = new Mantenimiento();
@@ -71,9 +79,9 @@ namespace RegistroSegundoParcial.UI.Registros
             mantenimiento.MantenimientoId = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
             mantenimiento.Fecha = FechaDateTimePicker.Value;
             mantenimiento.FechaProximo = ProxManteDateTimePicker.Value;
-            mantenimiento.SubTotal = Convert.ToInt32(SubTotalTextBox.Text);
-            mantenimiento.Itbis = Convert.ToInt32(ItbisTextBox.Text);
-            mantenimiento.Total = Convert.ToInt32(TotalTextBox.Text);            
+            mantenimiento.SubTotal = Convert.ToSingle(SubTotalTextBox.Text);
+            mantenimiento.Itbis = Convert.ToSingle(ItbisTextBox.Text);
+            mantenimiento.Total = Convert.ToSingle(TotalTextBox.Text);            
 
             foreach (DataGridViewRow item in MantenimientoDetalleDataGridView.Rows)
             {
@@ -84,9 +92,9 @@ namespace RegistroSegundoParcial.UI.Registros
                     ToInt(item.Cells["TallerId"].Value),
                     ToInt(item.Cells["ArticuloId"].Value),
                     item.Cells["Articulo"].ToString(),
-                    ToInt(item.Cells["Cantidad"].Value),
-                    ToInt(item.Cells["Precio"].Value),
-                    ToInt(item.Cells["Importe"].Value)
+                    ToDouble(item.Cells["Cantidad"].Value),
+                    ToDouble(item.Cells["Precio"].Value),
+                    ToDouble(item.Cells["Importe"].Value)
                 );
             }
 
@@ -124,7 +132,11 @@ namespace RegistroSegundoParcial.UI.Registros
 
         private void LlenarImporte()
         {
-            ImporteTextBox.Text = MantenimientoBLL.Importe(Convert.ToSingle(CantidadNumericUpDown.Value), Convert.ToSingle(PrecioTextBox.Text)).ToString();
+            double cantidad, precio;
+
+            cantidad = Convert.ToDouble(CantidadNumericUpDown.Value);
+            precio = Convert.ToDouble(PrecioTextBox.Text);
+            ImporteTextBox.Text = MantenimientoBLL.Importe(cantidad, precio).ToString();
         }
 
         private void LlenarValores()
@@ -135,9 +147,9 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
             }
-            float Total = 0;
-            float Itbis = 0;
-            float SubTotal = 0;
+            double Total = 0;
+            double Itbis = 0;
+            double SubTotal = 0;
             foreach (var item in detalle)
             {
                 Total += item.Importe;
@@ -157,9 +169,9 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
             }
-            float Total = 0;
-            float Itbis = 0;
-            float SubTotal = 0;
+            double Total = 0;
+            double Itbis = 0;
+            double SubTotal = 0;
             foreach (var item in detalle)
             {
                 Total -= item.Importe;
@@ -212,9 +224,9 @@ namespace RegistroSegundoParcial.UI.Registros
                     tallerId: (int)TallerComboBox.SelectedValue,
                     articuloId: (int)ArticuloComboBox.SelectedValue,
                     articulo: ArticuloComboBox.Text,
-                    cantidad: (int)Convert.ToInt32(CantidadNumericUpDown.Value),
-                    precio: (int)Convert.ToInt32(PrecioTextBox.Text),
-                    importe: (int)Convert.ToInt32(ImporteTextBox.Text)
+                    cantidad: (double)Convert.ToDouble(CantidadNumericUpDown.Value),
+                    precio: (double)Convert.ToDouble(PrecioTextBox.Text),
+                    importe: (double)Convert.ToDouble(ImporteTextBox.Text)
                 ));
             
             MantenimientoDetalleDataGridView.DataSource = null;
@@ -229,7 +241,7 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
 
-                int Inventario = 0;
+                double Inventario = 0;
                 string NombreArticulo = string.Empty;
                 foreach (var item in detalle)
                 {
@@ -321,9 +333,16 @@ namespace RegistroSegundoParcial.UI.Registros
         private void ArticuloComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LlenarPrecio();
+            if(CantidadNumericUpDown.Value != 0)
+            LlenarImporte();
         }
 
         private void RegistrarMantenimiento_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
         }

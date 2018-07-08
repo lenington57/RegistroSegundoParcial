@@ -15,7 +15,7 @@ namespace RegistroSegundoParcial.Entidades
 
         public string Descripcion { get; set; }
 
-        public int TotalMantenimiento { get; set; }
+        public double TotalMantenimiento { get; set; }
 
 
         public Vehiculos()

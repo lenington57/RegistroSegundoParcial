@@ -199,7 +199,7 @@
             // 
             // PrecioTextBox
             // 
-            this.PrecioTextBox.Location = new System.Drawing.Point(241, 227);
+            this.PrecioTextBox.Location = new System.Drawing.Point(241, 226);
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.ReadOnly = true;
             this.PrecioTextBox.Size = new System.Drawing.Size(79, 20);

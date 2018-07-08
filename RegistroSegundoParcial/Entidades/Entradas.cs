@@ -17,7 +17,7 @@ namespace RegistroSegundoParcial.Entidades
 
         public string Articulo { get; set; }
 
-        public int Cantidad { get; set; }
+        public double Cantidad { get; set; }
 
         public Entradas()
         {

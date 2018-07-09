@@ -33,7 +33,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             vehiculo.VehiculoId = 1;
             vehiculo.Descripcion = "Toyota Corolla 2008 Le";
             vehiculo.TotalMantenimiento = 0;
-            paso = VehiculosBLL.Guardar(vehiculo);
+            paso = VehiculosBLL.Modificar(vehiculo);
             Assert.AreEqual(paso, true);
         }
 

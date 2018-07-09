@@ -33,7 +33,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             entrada.EntradaId = 3;
             entrada.Articulo = "Clinch";
             entrada.Cantidad = 8; 
-            paso = EntradasBLL.Guardar(entrada);
+            paso = EntradasBLL.Modificar(entrada);
             Assert.AreEqual(paso, true);
         }
 

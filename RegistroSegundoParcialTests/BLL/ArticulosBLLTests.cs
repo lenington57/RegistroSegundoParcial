@@ -39,7 +39,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             articulo.Precio = 80;
             articulo.PorcientoGanacia = 30;
             articulo.Inventario = 0; ;
-            paso = ArticulosBLL.Guardar(articulo);
+            paso = ArticulosBLL.Modificar(articulo);
             Assert.AreEqual(paso, true);
         }
 

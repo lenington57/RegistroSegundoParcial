@@ -33,7 +33,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             taller.TallerId = 4;
             taller.Nombre = "Taller Los Muchachones";
 
-            paso = TalleresBLL.Guardar(taller);
+            paso = TalleresBLL.Modificar(taller);
             Assert.AreEqual(paso, true);
         }
 

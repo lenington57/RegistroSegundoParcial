@@ -164,6 +164,7 @@
             // 
             // ArticuloComboBox
             // 
+            this.ArticuloComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ArticuloComboBox.FormattingEnabled = true;
             this.ArticuloComboBox.Location = new System.Drawing.Point(31, 227);
             this.ArticuloComboBox.Name = "ArticuloComboBox";
@@ -204,6 +205,7 @@
             this.PrecioTextBox.ReadOnly = true;
             this.PrecioTextBox.Size = new System.Drawing.Size(79, 20);
             this.PrecioTextBox.TabIndex = 50;
+            this.PrecioTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -221,6 +223,7 @@
             this.ImporteTextBox.ReadOnly = true;
             this.ImporteTextBox.Size = new System.Drawing.Size(68, 20);
             this.ImporteTextBox.TabIndex = 52;
+            this.ImporteTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // RemoverButton
             // 

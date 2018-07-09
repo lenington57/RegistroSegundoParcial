@@ -54,6 +54,18 @@ namespace RegistroSegundoParcial.UI.Registros
             ArticuloComboBox.DataSource = ArtRepositorio.GetList(c => true);
             ArticuloComboBox.ValueMember = "ArticuloId";
             ArticuloComboBox.DisplayMember = "Descripcion";
+
+            PrecioTextBox.DataBindings.Clear();
+            Binding doBinding = new Binding("Text", ArticuloComboBox.DataSource, "Precio");
+            doBinding.Format += new ConvertEventHandler(FormatoMoneda);
+            PrecioTextBox.DataBindings.Add(doBinding);
+        }
+
+        private void FormatoMoneda(object sender, ConvertEventArgs e)
+        {
+            double valor = 0;
+            double.TryParse(e.Value.ToString(), out valor);
+            e.Value = valor.ToString("#,##.00;(#,##.00);0.00");
         }
 
         private int ToInt(object valor)

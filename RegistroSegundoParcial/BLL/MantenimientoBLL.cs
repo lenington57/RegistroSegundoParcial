@@ -46,11 +46,11 @@ namespace RegistroSegundoParcial.BLL
 
                 foreach (var item in MantetAnt.Detalle)
                 {
-                    contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
 
                     if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
                     {
-                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                        //contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
                         item.Articulos = null;
                         contexto.Entry(item).State = EntityState.Deleted;
                     }
@@ -181,6 +181,11 @@ namespace RegistroSegundoParcial.BLL
                 item.Inventario += Cantidad;
                 ArticulosBLL.Modificar(item);
             }
+        }
+
+        public static void RestarEliminadas()
+        {
+
         }
 
     }

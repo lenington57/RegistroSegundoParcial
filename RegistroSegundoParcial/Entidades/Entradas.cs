@@ -15,7 +15,7 @@ namespace RegistroSegundoParcial.Entidades
 
         public DateTime Fecha { get; set; }
 
-        public string Articulo { get; set; }
+        public int ArticuloId { get; set; }
 
         public double Cantidad { get; set; }
 
@@ -23,7 +23,7 @@ namespace RegistroSegundoParcial.Entidades
         {
             EntradaId = 0;
             Fecha = DateTime.Now;
-            Articulo = string.Empty;
+            ArticuloId = 0;
             Cantidad = 0; 
         }
     }

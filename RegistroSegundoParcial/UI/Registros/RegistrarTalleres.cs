@@ -33,6 +33,7 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             TallerIdNumericUpDown.Value = 0;
             NombreTextBox.Clear();
+            MyErrorProvider.Clear();
         }
 
         private bool HayErrores()

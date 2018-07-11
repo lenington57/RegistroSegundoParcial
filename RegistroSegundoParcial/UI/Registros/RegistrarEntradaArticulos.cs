@@ -36,7 +36,7 @@ namespace RegistroSegundoParcial.UI.Registros
 
             entradas.EntradaId = Convert.ToInt32(EntradaIdNumericUpDown.Value);
             entradas.Fecha = FechaDateTimePicker.Value;
-            entradas.Articulo = ArticuloComboBox.Text;
+            entradas.ArticuloId = Convert.ToInt32(ArticuloComboBox.SelectedValue);
             entradas.Cantidad = Convert.ToDouble(CantidadTextBox.Text);
 
             return entradas;
@@ -74,7 +74,7 @@ namespace RegistroSegundoParcial.UI.Registros
             if (entradas != null)
             {
                 FechaDateTimePicker.Value = entradas.Fecha;
-                ArticuloComboBox.Text = entradas.Articulo;
+                ArticuloComboBox.SelectedValue = entradas.ArticuloId;
                 CantidadTextBox.Text = entradas.Cantidad.ToString();
             }
             else
@@ -112,7 +112,6 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 MessageBox.Show("Guardado", "Exito",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                EntradasBLL.LlenarInventario(LlenaClase());
                 Limpiar();
             }
             else
@@ -130,7 +129,6 @@ namespace RegistroSegundoParcial.UI.Registros
                 if (EntradasBLL.Eliminar(id))
                 {
                     MessageBox.Show("Eliminado!!", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    EntradasBLL.RebajarInventario(LlenaClase());
                     Limpiar();
                 }
                 else

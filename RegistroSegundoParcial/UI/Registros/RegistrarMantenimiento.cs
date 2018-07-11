@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace RegistroSegundoParcial.UI.Registros
 {
     public partial class RegistrarMantenimiento : Form
     {
+        double cantidadElim = 0;
+
         public RegistrarMantenimiento()
         {
             InitializeComponent();                       
@@ -117,6 +120,8 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             MantenimientoIdNumericUpDown.Value = 0;
             FechaDateTimePicker.Value = DateTime.Now;
+            VehiculoComboBox.SelectedIndex = 0;
+            TallerComboBox.SelectedIndex = 0;
             ArticuloComboBox.SelectedIndex = 0;
             CantidadNumericUpDown.Value = 0;
             PrecioTextBox.Clear();
@@ -125,6 +130,7 @@ namespace RegistroSegundoParcial.UI.Registros
             SubTotalTextBox.Clear();
             ItbisTextBox.Clear();
             TotalTextBox.Clear();
+            MyErrorProvider.Clear();
         }
 
         private void CalcularFecha()
@@ -281,20 +287,22 @@ namespace RegistroSegundoParcial.UI.Registros
             LlenarValores();
         }
 
+
         private void RemoverButton_Click(object sender, EventArgs e)
         {
             if (MantenimientoDetalleDataGridView.Rows.Count > 0 && MantenimientoDetalleDataGridView.CurrentRow != null)
             {
                 List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
 
-                double Inventario = 0;
-                string NombreArticulo = string.Empty;
-                foreach (var item in detalle)
-                {
-                    Inventario += item.Cantidad;
-                    NombreArticulo = item.Articulo;
-                }
-                MantenimientoBLL.Cantidad(Inventario, NombreArticulo);
+                //double Inventario = 0;
+                //string NombreArticulo = string.Empty;
+                //foreach (var item in detalle)
+                //{
+                //    Inventario += item.Cantidad;
+                //    NombreArticulo = item.Articulo;
+                //}
+                //MantenimientoBLL.Cantidad(Inventario, NombreArticulo);
+
                 detalle.RemoveAt(MantenimientoDetalleDataGridView.CurrentRow.Index);
                 
                 MantenimientoDetalleDataGridView.DataSource = null;
@@ -302,6 +310,23 @@ namespace RegistroSegundoParcial.UI.Registros
 
                 RebajarValores();
             }
+        }
+
+        private void EliminarCant()
+        {
+            MantenimientoDetalleDataGridView.CellClick += MantenimientoDetalleDataGridView_CellClick;
+        }
+
+        private void MantenimientoDetalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int suma = 0;
+            string nombre = "";
+            suma += int.Parse(MantenimientoDetalleDataGridView.CurrentRow.Cells[6].Value.ToString());
+            nombre = MantenimientoDetalleDataGridView.CurrentRow.Cells[5].Value.ToString();
+            cantidadElim = Convert.ToDouble(suma);
+
+           // MantenimientoBLL.Cantidad(cantidadElim, nombre);
+
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)

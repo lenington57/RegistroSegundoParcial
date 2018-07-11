@@ -35,6 +35,7 @@ namespace RegistroSegundoParcial.UI.Registros
             VehiculoIdNumericUpDown.Value = 0;
             DescripcionTextBox.Clear();
             MantenimientoTextBox.Clear();
+            MyErrorProvider.Clear();
         }
 
         private bool HayErrores()

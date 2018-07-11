@@ -33,7 +33,7 @@ namespace RegistroSegundoParcial.UI.Consultas
                     filtro = ea => ea.Fecha >= DesdeDateTimePicker.Value && ea.Fecha <= HastaDateTimePicker.Value;
                     break;
                 case 2://Filtrando por Nombre del Artículo.
-                    filtro = ea => ea.Articulo.Equals(CriterioTextBox.Text) && ea.Fecha >= DesdeDateTimePicker.Value && ea.Fecha <= HastaDateTimePicker.Value;
+                    filtro = ea => ea.ArticuloId.Equals(CriterioTextBox.Text) && ea.Fecha >= DesdeDateTimePicker.Value && ea.Fecha <= HastaDateTimePicker.Value;
                     break;
                 case 3://Filtrando por Cantidad de Entrada del Artículo.
                     filtro = ea => ea.Cantidad.Equals(CriterioTextBox.Text) && ea.Fecha >= DesdeDateTimePicker.Value && ea.Fecha <= HastaDateTimePicker.Value; 

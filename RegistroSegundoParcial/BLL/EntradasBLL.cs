@@ -20,7 +20,10 @@ namespace RegistroSegundoParcial.BLL
             {
                 if (contexto.Entradas.Add(entradas) != null)
                 {
-                   
+                    Articulos articulo = ArticulosBLL.Buscar(entradas.ArticuloId);
+                    articulo.Inventario += entradas.Cantidad;
+                    ArticulosBLL.Modificar(articulo);
+
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -40,7 +43,15 @@ namespace RegistroSegundoParcial.BLL
 
             Contexto contexto = new Contexto();
             try
-            {                
+            {
+                Entradas EntrAnt = EntradasBLL.Buscar(entradas.EntradaId);
+
+                double modificado = entradas.Cantidad - EntrAnt.Cantidad;
+                
+                Articulos articulo = ArticulosBLL.Buscar(entradas.ArticuloId);
+                articulo.Inventario += modificado;
+                ArticulosBLL.Modificar(articulo);
+
                 contexto.Entry(entradas).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
@@ -64,6 +75,10 @@ namespace RegistroSegundoParcial.BLL
             try
             {
                 Entradas entradas = contexto.Entradas.Find(id);
+
+                Articulos articulo = ArticulosBLL.Buscar(entradas.ArticuloId);
+                articulo.Inventario -= entradas.Cantidad;
+                ArticulosBLL.Modificar(articulo);
 
                 contexto.Entradas.Remove(entradas);
 
@@ -112,25 +127,6 @@ namespace RegistroSegundoParcial.BLL
             }
 
             return entradas;
-        }
-
-        public static void LlenarInventario(Entradas entradas)
-        {
-            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
-            {
-                item.Inventario += entradas.Cantidad;
-                ArticulosBLL.Modificar(item);
-            }
-        }
-
-
-        public static void RebajarInventario(Entradas entradas)
-        {
-            foreach (var item in ArticulosBLL.GetList(c => c.Descripcion == entradas.Articulo))
-            {
-                item.Inventario -= entradas.Cantidad;
-                ArticulosBLL.Modificar(item);
-            }
         }
 
     }

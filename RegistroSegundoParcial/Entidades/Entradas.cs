@@ -19,6 +19,7 @@ namespace RegistroSegundoParcial.Entidades
 
         public double Cantidad { get; set; }
 
+
         public Entradas()
         {
             EntradaId = 0;

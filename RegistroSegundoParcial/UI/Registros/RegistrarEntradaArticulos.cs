@@ -104,10 +104,19 @@ namespace RegistroSegundoParcial.UI.Registros
             if (EntradaIdNumericUpDown.Value == 0)
                 Paso = EntradasBLL.Guardar(entradas);
             else
-            {                
-                Paso = EntradasBLL.Modificar(LlenaClase());
-            }
+            {
+                int id = Convert.ToInt32(EntradaIdNumericUpDown.Value);
+                entradas = EntradasBLL.Buscar(id);
 
+                if (entradas != null)
+                {
+                    Paso = EntradasBLL.Modificar(LlenaClase());
+                }
+                else
+                    MessageBox.Show("Id no existe", "Falló",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             if (Paso)
             {
                 MessageBox.Show("Guardado", "Exito",

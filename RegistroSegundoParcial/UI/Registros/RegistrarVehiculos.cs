@@ -91,7 +91,18 @@ namespace RegistroSegundoParcial.UI.Registros
             if (VehiculoIdNumericUpDown.Value == 0)
                 Paso = VehiculosBLL.Guardar(vehiculos);
             else
-                Paso = VehiculosBLL.Modificar(LlenaClase());
+            {
+                int id = Convert.ToInt32(VehiculoIdNumericUpDown.Value);
+                vehiculos = VehiculosBLL.Buscar(id);
+
+                if (vehiculos != null)
+                {
+                    Paso = VehiculosBLL.Modificar(LlenaClase());
+                }
+                else
+                    MessageBox.Show("Id no existe", "Falló",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                
 
             if (Paso)
             {

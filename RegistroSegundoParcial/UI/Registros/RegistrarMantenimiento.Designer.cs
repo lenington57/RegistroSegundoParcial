@@ -70,7 +70,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 27);
+            this.label1.Location = new System.Drawing.Point(9, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 35;
@@ -78,7 +78,7 @@
             // 
             // MantenimientoIdNumericUpDown
             // 
-            this.MantenimientoIdNumericUpDown.Location = new System.Drawing.Point(124, 19);
+            this.MantenimientoIdNumericUpDown.Location = new System.Drawing.Point(101, 16);
             this.MantenimientoIdNumericUpDown.Name = "MantenimientoIdNumericUpDown";
             this.MantenimientoIdNumericUpDown.Size = new System.Drawing.Size(78, 20);
             this.MantenimientoIdNumericUpDown.TabIndex = 36;
@@ -86,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 74);
+            this.label2.Location = new System.Drawing.Point(9, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 37;
@@ -96,7 +96,7 @@
             // 
             this.FechaDateTimePicker.CustomFormat = "dd/MM/yy";
             this.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.FechaDateTimePicker.Location = new System.Drawing.Point(81, 67);
+            this.FechaDateTimePicker.Location = new System.Drawing.Point(58, 52);
             this.FechaDateTimePicker.Name = "FechaDateTimePicker";
             this.FechaDateTimePicker.Size = new System.Drawing.Size(88, 20);
             this.FechaDateTimePicker.TabIndex = 38;
@@ -104,7 +104,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(192, 73);
+            this.label3.Location = new System.Drawing.Point(169, 58);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 13);
             this.label3.TabIndex = 39;
@@ -114,7 +114,7 @@
             // 
             this.ProxManteDateTimePicker.CustomFormat = "dd/MM/yy";
             this.ProxManteDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ProxManteDateTimePicker.Location = new System.Drawing.Point(312, 68);
+            this.ProxManteDateTimePicker.Location = new System.Drawing.Point(289, 53);
             this.ProxManteDateTimePicker.Name = "ProxManteDateTimePicker";
             this.ProxManteDateTimePicker.Size = new System.Drawing.Size(88, 20);
             this.ProxManteDateTimePicker.TabIndex = 40;
@@ -122,41 +122,47 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 122);
+            this.label4.Location = new System.Drawing.Point(9, 87);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 41;
             this.label4.Text = "Vehículo";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // VehiculoComboBox
             // 
+            this.VehiculoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VehiculoComboBox.FormattingEnabled = true;
-            this.VehiculoComboBox.Location = new System.Drawing.Point(81, 114);
+            this.VehiculoComboBox.Location = new System.Drawing.Point(58, 79);
             this.VehiculoComboBox.Name = "VehiculoComboBox";
             this.VehiculoComboBox.Size = new System.Drawing.Size(319, 21);
             this.VehiculoComboBox.TabIndex = 42;
+            this.VehiculoComboBox.SelectedIndexChanged += new System.EventHandler(this.VehiculoComboBox_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 169);
+            this.label5.Location = new System.Drawing.Point(9, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 43;
             this.label5.Text = "Taller";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // TallerComboBox
             // 
+            this.TallerComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TallerComboBox.FormattingEnabled = true;
-            this.TallerComboBox.Location = new System.Drawing.Point(81, 161);
+            this.TallerComboBox.Location = new System.Drawing.Point(58, 103);
             this.TallerComboBox.Name = "TallerComboBox";
             this.TallerComboBox.Size = new System.Drawing.Size(319, 21);
             this.TallerComboBox.TabIndex = 44;
+            this.TallerComboBox.SelectedIndexChanged += new System.EventHandler(this.TallerComboBox_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(28, 211);
+            this.label6.Location = new System.Drawing.Point(9, 140);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 45;
@@ -166,7 +172,7 @@
             // 
             this.ArticuloComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ArticuloComboBox.FormattingEnabled = true;
-            this.ArticuloComboBox.Location = new System.Drawing.Point(31, 227);
+            this.ArticuloComboBox.Location = new System.Drawing.Point(12, 156);
             this.ArticuloComboBox.Name = "ArticuloComboBox";
             this.ArticuloComboBox.Size = new System.Drawing.Size(106, 21);
             this.ArticuloComboBox.TabIndex = 46;
@@ -175,7 +181,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(149, 211);
+            this.label7.Location = new System.Drawing.Point(130, 140);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 47;
@@ -183,7 +189,7 @@
             // 
             // CantidadNumericUpDown
             // 
-            this.CantidadNumericUpDown.Location = new System.Drawing.Point(152, 227);
+            this.CantidadNumericUpDown.Location = new System.Drawing.Point(133, 156);
             this.CantidadNumericUpDown.Name = "CantidadNumericUpDown";
             this.CantidadNumericUpDown.Size = new System.Drawing.Size(76, 20);
             this.CantidadNumericUpDown.TabIndex = 48;
@@ -192,7 +198,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(238, 210);
+            this.label8.Location = new System.Drawing.Point(219, 139);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 49;
@@ -200,7 +206,7 @@
             // 
             // PrecioTextBox
             // 
-            this.PrecioTextBox.Location = new System.Drawing.Point(241, 226);
+            this.PrecioTextBox.Location = new System.Drawing.Point(222, 155);
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.ReadOnly = true;
             this.PrecioTextBox.Size = new System.Drawing.Size(79, 20);
@@ -210,7 +216,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(325, 210);
+            this.label9.Location = new System.Drawing.Point(306, 139);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(42, 13);
             this.label9.TabIndex = 51;
@@ -218,7 +224,7 @@
             // 
             // ImporteTextBox
             // 
-            this.ImporteTextBox.Location = new System.Drawing.Point(328, 227);
+            this.ImporteTextBox.Location = new System.Drawing.Point(309, 156);
             this.ImporteTextBox.Name = "ImporteTextBox";
             this.ImporteTextBox.ReadOnly = true;
             this.ImporteTextBox.Size = new System.Drawing.Size(68, 20);
@@ -229,7 +235,7 @@
             // 
             this.RemoverButton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Delete_16px;
             this.RemoverButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.RemoverButton.Location = new System.Drawing.Point(409, 223);
+            this.RemoverButton.Location = new System.Drawing.Point(390, 152);
             this.RemoverButton.Name = "RemoverButton";
             this.RemoverButton.Size = new System.Drawing.Size(82, 27);
             this.RemoverButton.TabIndex = 54;
@@ -241,7 +247,7 @@
             // 
             this.AgregarButtton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Plus_Math_16px;
             this.AgregarButtton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.AgregarButtton.Location = new System.Drawing.Point(409, 196);
+            this.AgregarButtton.Location = new System.Drawing.Point(390, 125);
             this.AgregarButtton.Name = "AgregarButtton";
             this.AgregarButtton.Size = new System.Drawing.Size(82, 27);
             this.AgregarButtton.TabIndex = 53;
@@ -253,7 +259,7 @@
             // 
             this.EliminarButton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Delete_16px;
             this.EliminarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.EliminarButton.Location = new System.Drawing.Point(386, 564);
+            this.EliminarButton.Location = new System.Drawing.Point(390, 479);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(85, 23);
             this.EliminarButton.TabIndex = 34;
@@ -265,7 +271,7 @@
             // 
             this.GuardarButton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Save_16px;
             this.GuardarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.GuardarButton.Location = new System.Drawing.Point(211, 564);
+            this.GuardarButton.Location = new System.Drawing.Point(208, 479);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(93, 23);
             this.GuardarButton.TabIndex = 33;
@@ -277,7 +283,7 @@
             // 
             this.NuevoButton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Edit_Property_16px;
             this.NuevoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.NuevoButton.Location = new System.Drawing.Point(46, 564);
+            this.NuevoButton.Location = new System.Drawing.Point(27, 479);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(91, 23);
             this.NuevoButton.TabIndex = 32;
@@ -289,7 +295,7 @@
             // 
             this.BuscarButton.BackgroundImage = global::RegistroSegundoParcial.Properties.Resources.Search_16px;
             this.BuscarButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.BuscarButton.Location = new System.Drawing.Point(218, 17);
+            this.BuscarButton.Location = new System.Drawing.Point(195, 14);
             this.BuscarButton.Name = "BuscarButton";
             this.BuscarButton.Size = new System.Drawing.Size(89, 23);
             this.BuscarButton.TabIndex = 31;
@@ -300,7 +306,7 @@
             // MantenimientoDetalleDataGridView
             // 
             this.MantenimientoDetalleDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MantenimientoDetalleDataGridView.Location = new System.Drawing.Point(31, 254);
+            this.MantenimientoDetalleDataGridView.Location = new System.Drawing.Point(12, 183);
             this.MantenimientoDetalleDataGridView.Name = "MantenimientoDetalleDataGridView";
             this.MantenimientoDetalleDataGridView.Size = new System.Drawing.Size(460, 193);
             this.MantenimientoDetalleDataGridView.TabIndex = 55;
@@ -308,7 +314,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(332, 464);
+            this.label10.Location = new System.Drawing.Point(313, 393);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 13);
             this.label10.TabIndex = 56;
@@ -317,7 +323,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(343, 492);
+            this.label11.Location = new System.Drawing.Point(324, 421);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(42, 13);
             this.label11.TabIndex = 57;
@@ -326,7 +332,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(354, 518);
+            this.label12.Location = new System.Drawing.Point(335, 447);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(31, 13);
             this.label12.TabIndex = 58;
@@ -334,7 +340,7 @@
             // 
             // SubTotalTextBox
             // 
-            this.SubTotalTextBox.Location = new System.Drawing.Point(391, 457);
+            this.SubTotalTextBox.Location = new System.Drawing.Point(372, 386);
             this.SubTotalTextBox.Name = "SubTotalTextBox";
             this.SubTotalTextBox.ReadOnly = true;
             this.SubTotalTextBox.Size = new System.Drawing.Size(100, 20);
@@ -342,7 +348,7 @@
             // 
             // ItbisTextBox
             // 
-            this.ItbisTextBox.Location = new System.Drawing.Point(391, 485);
+            this.ItbisTextBox.Location = new System.Drawing.Point(372, 414);
             this.ItbisTextBox.Name = "ItbisTextBox";
             this.ItbisTextBox.ReadOnly = true;
             this.ItbisTextBox.Size = new System.Drawing.Size(100, 20);
@@ -350,7 +356,7 @@
             // 
             // TotalTextBox
             // 
-            this.TotalTextBox.Location = new System.Drawing.Point(391, 511);
+            this.TotalTextBox.Location = new System.Drawing.Point(372, 440);
             this.TotalTextBox.Name = "TotalTextBox";
             this.TotalTextBox.ReadOnly = true;
             this.TotalTextBox.Size = new System.Drawing.Size(100, 20);
@@ -364,7 +370,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(517, 613);
+            this.ClientSize = new System.Drawing.Size(482, 526);
             this.Controls.Add(this.TotalTextBox);
             this.Controls.Add(this.ItbisTextBox);
             this.Controls.Add(this.SubTotalTextBox);

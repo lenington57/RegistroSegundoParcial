@@ -15,8 +15,6 @@ namespace RegistroSegundoParcial.UI.Registros
 {
     public partial class RegistrarMantenimiento : Form
     {
-        double cantidadElim = 0;
-
         public RegistrarMantenimiento()
         {
             InitializeComponent();                       
@@ -58,10 +56,7 @@ namespace RegistroSegundoParcial.UI.Registros
             ArticuloComboBox.ValueMember = "ArticuloId";
             ArticuloComboBox.DisplayMember = "Descripcion";
 
-            PrecioTextBox.DataBindings.Clear();
-            Binding doBinding = new Binding("Text", ArticuloComboBox.DataSource, "Precio");
-            doBinding.Format += new ConvertEventHandler(FormatoMoneda);
-            PrecioTextBox.DataBindings.Add(doBinding);
+            CambiarPrecio();
         }
 
         private void FormatoMoneda(object sender, ConvertEventArgs e)
@@ -77,6 +72,14 @@ namespace RegistroSegundoParcial.UI.Registros
             int.TryParse(valor.ToString(), out retorno);
 
             return retorno;
+        }
+
+        private void CambiarPrecio()
+        {
+            PrecioTextBox.DataBindings.Clear();
+            Binding doBinding = new Binding("Text", ArticuloComboBox.DataSource, "Precio");
+            doBinding.Format += new ConvertEventHandler(FormatoMoneda);
+            PrecioTextBox.DataBindings.Add(doBinding);
         }
 
         private double ToDouble(object valor)
@@ -294,15 +297,6 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
 
-                //double Inventario = 0;
-                //string NombreArticulo = string.Empty;
-                //foreach (var item in detalle)
-                //{
-                //    Inventario += item.Cantidad;
-                //    NombreArticulo = item.Articulo;
-                //}
-                //MantenimientoBLL.Cantidad(Inventario, NombreArticulo);
-
                 detalle.RemoveAt(MantenimientoDetalleDataGridView.CurrentRow.Index);
                 
                 MantenimientoDetalleDataGridView.DataSource = null;
@@ -310,23 +304,6 @@ namespace RegistroSegundoParcial.UI.Registros
 
                 RebajarValores();
             }
-        }
-
-        private void EliminarCant()
-        {
-            MantenimientoDetalleDataGridView.CellClick += MantenimientoDetalleDataGridView_CellClick;
-        }
-
-        private void MantenimientoDetalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int suma = 0;
-            string nombre = "";
-            suma += int.Parse(MantenimientoDetalleDataGridView.CurrentRow.Cells[6].Value.ToString());
-            nombre = MantenimientoDetalleDataGridView.CurrentRow.Cells[5].Value.ToString();
-            cantidadElim = Convert.ToDouble(suma);
-
-           // MantenimientoBLL.Cantidad(cantidadElim, nombre);
-
         }
 
         private void BuscarButton_Click(object sender, EventArgs e)
@@ -365,15 +342,25 @@ namespace RegistroSegundoParcial.UI.Registros
             if (MantenimientoIdNumericUpDown.Value == 0)
                 Paso = MantenimientoBLL.Guardar(mantenimiento);
             else
-                Paso = MantenimientoBLL.Modificar(mantenimiento);
-            
+            {
+                int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
+                Mantenimiento mantenimi = MantenimientoBLL.Buscar(id);
+
+                if (mantenimi != null)
+                {
+                    Paso = MantenimientoBLL.Modificar(mantenimiento);
+                }
+                else
+                    MessageBox.Show("Id no existe", "Falló",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             if (Paso)
             {
                 MantenimientoBLL.CostoMantenimiento(LlenaClase().Total, VehiculoComboBox.Text);
                 NuevoButton.PerformClick();
                 MessageBox.Show("Guardado!!", "Exito",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Limpiar();
             }
             else
                 MessageBox.Show("No se pudo guardar!!", "Fallo",
@@ -411,16 +398,46 @@ namespace RegistroSegundoParcial.UI.Registros
         private void ArticuloComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             LlenarPrecio();
-            if(CantidadNumericUpDown.Value != 0)
-            LlenarImporte();
+            if (CantidadNumericUpDown.Value != 0)
+            {
+                LlenarImporte();
+            }
+            CambiarPrecio();
         }
 
+        //Dando click sin querer
         private void RegistrarMantenimiento_Load(object sender, EventArgs e)
         {
 
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MantenimientoDetalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
+        }
+
+        private void VehiculoComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TallerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

@@ -44,6 +44,14 @@ namespace RegistroSegundoParcial.UI.Registros
             MyErrorProvider.Clear();
         }
 
+        private void CalcularGanancia()
+        {
+            double costo, precio;
+            costo = ToDouble(CostoTextBox.Text);
+            precio = ToDouble(PrecioTextBox.Text);
+            PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
+        }
+
         private bool HayErrores()
         {
             bool HayErrores = false;
@@ -128,7 +136,18 @@ namespace RegistroSegundoParcial.UI.Registros
             if (ArtículoIdNumericUpDown.Value == 0)
                 Paso = ArticulosBLL.Guardar(articulos);
             else
-                Paso = ArticulosBLL.Modificar(LlenaClase());
+            {
+                int id = Convert.ToInt32(ArtículoIdNumericUpDown.Value);
+                articulos = ArticulosBLL.Buscar(id);
+
+                if (articulos != null)
+                {
+                    Paso = ArticulosBLL.Modificar(LlenaClase());
+                }
+                else
+                    MessageBox.Show("Id no existe", "Falló",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                
 
             if (Paso)
             {
@@ -165,10 +184,7 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             if (PrecioTextBox.Text != string.Empty)
             {
-                double costo, precio;
-                costo = ToDouble(CostoTextBox.Text);
-                precio = ToDouble(PrecioTextBox.Text);
-                PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
+                CalcularGanancia();
             }
         }
 
@@ -176,10 +192,7 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             if (PrecioTextBox.Text != string.Empty)
             {
-                double costo, precio;
-                costo = ToDouble(CostoTextBox.Text);
-                precio = ToDouble(PrecioTextBox.Text);
-                PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
+                CalcularGanancia();
             }               
             
         }

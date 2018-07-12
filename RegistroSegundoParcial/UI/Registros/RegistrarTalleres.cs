@@ -84,12 +84,23 @@ namespace RegistroSegundoParcial.UI.Registros
             }
 
             talleres = LlenaClase();
-            
+
             if (TallerIdNumericUpDown.Value == 0)
                 Paso = TalleresBLL.Guardar(talleres);
             else
-                Paso = TalleresBLL.Modificar(LlenaClase());
+            {
+                int id = Convert.ToInt32(TallerIdNumericUpDown.Value);
+                talleres = TalleresBLL.Buscar(id);
 
+                if (talleres != null)
+                {
+                    Paso = TalleresBLL.Modificar(LlenaClase());
+                }
+                else
+                    MessageBox.Show("Id no existe", "Falló",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
             if (Paso)
             {
                 MessageBox.Show("Guardado", "Exito",

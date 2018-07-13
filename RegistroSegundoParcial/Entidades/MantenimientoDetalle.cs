@@ -27,7 +27,7 @@ namespace RegistroSegundoParcial.Entidades
 
         public double Precio { get; set; }
 
-        public double Importe { get; set; }      
+        public double Importe { get; set; }
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }

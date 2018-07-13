@@ -20,5 +20,10 @@ namespace RegistroSegundoParcial.Entidades
             TallerId = 0;
             Nombre = string.Empty;
         }
+
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
 }

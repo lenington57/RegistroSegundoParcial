@@ -43,23 +43,40 @@ namespace RegistroSegundoParcial.BLL
             try
             {
                 var MantetAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
-
+                
                 foreach (var item in MantetAnt.Detalle)
                 {
                     contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
 
                     if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
                     {
-                        //contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
                         item.Articulos = null;
                         contexto.Entry(item).State = EntityState.Deleted;
                     }
                 }
-                
+
+                foreach (var item in MantetAnt.Detalle)
+                {
+                    contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento -= item.Importe;
+
+                    if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
+                    {
+                        //contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento += item.Importe;
+                        item.Vehiculos = null;
+                        contexto.Entry(item).State = EntityState.Deleted;
+                    }
+                }
+
                 foreach (var item in mantenimiento.Detalle)
                 {
                     contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
-                    
+                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                    contexto.Entry(item).State = estado;
+                }
+
+                foreach (var item in mantenimiento.Detalle)
+                {
+                    contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento -= item.Importe;
                     var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     contexto.Entry(item).State = estado;
                 }
@@ -173,6 +190,33 @@ namespace RegistroSegundoParcial.BLL
                 VehiculosBLL.Modificar(item);
             }
         }
+
+        //public static void RebajaMantenimiento(Mantenimiento mantenimientos)
+        //{
+        //    Contexto contexto = new Contexto();
+
+        //    var MantetAnterior = MantenimientoBLL.Buscar(mantenimientos.MantenimientoId);
+        //    foreach (var item in MantetAnterior.Detalle)
+        //    {
+        //        contexto.Mantenimiento.Find(item.MantenimientoId).Total -= item.Importe;
+
+        //        if (!mantenimientos.Detalle.ToList().Exists(v => v.Id == item.Id))
+        //        {
+        //            contexto.Mantenimiento.Find(item.MantenimientoId).Total += item.Importe;
+        //            item.Articulos = null;
+        //            contexto.Entry(item).State = EntityState.Deleted;
+        //        }
+        //    }
+
+        //    foreach (var item in mantenimientos.Detalle)
+        //    {
+        //        contexto.Mantenimiento.Find(item.MantenimientoId).Total -= item.Importe;
+        //        var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+        //        contexto.Entry(item).State = estado;
+        //    }
+
+        //    contexto.Entry(mantenimientos).State = EntityState.Modified;
+        //}
 
         public static void Cantidad(double Cantidad, string descripcion)
         {

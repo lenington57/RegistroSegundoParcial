@@ -34,5 +34,7 @@ namespace RegistroSegundoParcial.Entidades
         {
             this.Detalle.Add(new MantenimientoDetalle(Id, MantenimientoId, VehiculoId, TallerId, ArticuloId, Articulo, Cantidad, Precio, Importe));
         }
+
+
     }
 }

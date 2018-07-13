@@ -32,5 +32,11 @@ namespace RegistroSegundoParcial.Entidades
             PorcientoGanacia = 0;
             Inventario = 0;
         }
+
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }

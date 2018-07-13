@@ -23,6 +23,11 @@ namespace RegistroSegundoParcial.Entidades
             VehiculoId = 0;
             Descripcion = string.Empty;
             TotalMantenimiento = 0;
-        }        
+        }
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
     }
 }

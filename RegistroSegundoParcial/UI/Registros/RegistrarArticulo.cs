@@ -52,6 +52,14 @@ namespace RegistroSegundoParcial.UI.Registros
             PctGananciaTextBox.Text = ArticulosBLL.PorcientoGanancia(costo, precio).ToString();
         }
 
+        private double ToDouble(object valor)
+        {
+            double retorno = 0;
+            double.TryParse(valor.ToString(), out retorno);
+
+            return Convert.ToDouble(retorno);
+        }
+
         private bool HayErrores()
         {
             bool HayErrores = false;
@@ -195,14 +203,6 @@ namespace RegistroSegundoParcial.UI.Registros
                 CalcularGanancia();
             }               
             
-        }
-
-        private double ToDouble(object valor)
-        {
-            double retorno = 0;
-            double.TryParse(valor.ToString(), out retorno);
-
-            return Convert.ToDouble(retorno);
         }
     }
 }

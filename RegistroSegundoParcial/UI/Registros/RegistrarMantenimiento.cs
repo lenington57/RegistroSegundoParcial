@@ -116,6 +116,9 @@ namespace RegistroSegundoParcial.UI.Registros
                 );
             }
 
+            MantenimientoDetalleDataGridView.Columns["Id"].Visible = false;
+            MantenimientoDetalleDataGridView.Columns["MantenimientoId"].Visible = false;
+            MantenimientoDetalleDataGridView.Columns["Articulo"].Visible = false;
             return mantenimiento;
         }
 
@@ -271,23 +274,36 @@ namespace RegistroSegundoParcial.UI.Registros
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
             }
 
-            detalle.Add(
-                new MantenimientoDetalle(
-                    id: 0,
-                    mantenimientoId: (int)MantenimientoIdNumericUpDown.Value,
-                    vehiculoId: (int)VehiculoComboBox.SelectedValue,
-                    tallerId: (int)TallerComboBox.SelectedValue,
-                    articuloId: (int)ArticuloComboBox.SelectedValue,
-                    articulo: ArticuloComboBox.Text,
-                    cantidad: (double)Convert.ToDouble(CantidadNumericUpDown.Value),
-                    precio: (double)Convert.ToDouble(PrecioTextBox.Text),
-                    importe: (double)Convert.ToDouble(ImporteTextBox.Text)
-                ));
-            
-            MantenimientoDetalleDataGridView.DataSource = null;
-            MantenimientoDetalleDataGridView.DataSource = detalle;
+            Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
 
-            LlenarValores();
+            Articulos articulo = (Articulos)ArticuloComboBox.SelectedItem;
+
+            if ((int)CantidadNumericUpDown.Value > articulo.Inventario)
+            {
+                MyErrorProvider.SetError(CantidadNumericUpDown, "Error");
+                MessageBox.Show("Cantidad mayor a la existente en inventario!!", "Validación!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                detalle.Add(
+               new MantenimientoDetalle(
+                   id: 0,
+                   mantenimientoId: (int)MantenimientoIdNumericUpDown.Value,
+                   vehiculoId: (int)VehiculoComboBox.SelectedValue,
+                   tallerId: (int)TallerComboBox.SelectedValue,
+                   articuloId: (int)ArticuloComboBox.SelectedValue,
+                   articulo: ArticuloComboBox.Text,
+                   cantidad: (double)Convert.ToDouble(CantidadNumericUpDown.Value),
+                   precio: (double)Convert.ToDouble(PrecioTextBox.Text),
+                   importe: (double)Convert.ToDouble(ImporteTextBox.Text)
+               ));
+
+                MantenimientoDetalleDataGridView.DataSource = null;
+                MantenimientoDetalleDataGridView.DataSource = detalle;
+
+                LlenarValores();
+            }           
         }
 
 
@@ -410,33 +426,33 @@ namespace RegistroSegundoParcial.UI.Registros
         {
 
         }
-
+        //Dando click sin querer
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
         }
-
+        //Dando click sin querer
         private void MantenimientoDetalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
 
         }
-
+        //Dando click sin querer
         private void VehiculoComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
+        //Dando click sin querer
         private void label5_Click(object sender, EventArgs e)
         {
 
         }
-
+        //Dando click sin querer
         private void TallerComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
+        //Dando click sin querer
         private void label4_Click(object sender, EventArgs e)
         {
 

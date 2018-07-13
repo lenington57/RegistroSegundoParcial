@@ -12,6 +12,8 @@ namespace RegistroSegundoParcial.Entidades
 
         public int MantenimientoId { get; set; }
 
+        public int VehiculoId { get; set; }
+
         public DateTime Fecha { get; set; }
 
         public DateTime FechaProximo { get; set; }

@@ -146,6 +146,7 @@
             this.CostoTextBox.Size = new System.Drawing.Size(100, 20);
             this.CostoTextBox.TabIndex = 50;
             this.CostoTextBox.TextChanged += new System.EventHandler(this.CostoTextBox_TextChanged);
+            this.CostoTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CostoTextBox_KeyPress);
             // 
             // label4
             // 
@@ -163,6 +164,7 @@
             this.PrecioTextBox.Size = new System.Drawing.Size(100, 20);
             this.PrecioTextBox.TabIndex = 52;
             this.PrecioTextBox.TextChanged += new System.EventHandler(this.PrecioTextBox_TextChanged);
+            this.PrecioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrecioTextBox_KeyPress);
             // 
             // label5
             // 

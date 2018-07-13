@@ -26,6 +26,7 @@ namespace RegistroSegundoParcial.UI.Registros
         private void LlenarCampos(Mantenimiento mantenimiento)
         {
             MantenimientoIdNumericUpDown.Value = mantenimiento.MantenimientoId;
+            VehiculoComboBox.SelectedValue = mantenimiento.VehiculoId;
             FechaDateTimePicker.Value = mantenimiento.Fecha;
             ProxManteDateTimePicker.Value = mantenimiento.FechaProximo;
             SubTotalTextBox.Text = mantenimiento.SubTotal.ToString();
@@ -95,6 +96,7 @@ namespace RegistroSegundoParcial.UI.Registros
             Mantenimiento mantenimiento = new Mantenimiento();
 
             mantenimiento.MantenimientoId = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
+            mantenimiento.VehiculoId = Convert.ToInt32(VehiculoComboBox.SelectedValue);
             mantenimiento.Fecha = FechaDateTimePicker.Value;
             mantenimiento.FechaProximo = ProxManteDateTimePicker.Value;
             mantenimiento.SubTotal = Convert.ToSingle(SubTotalTextBox.Text);

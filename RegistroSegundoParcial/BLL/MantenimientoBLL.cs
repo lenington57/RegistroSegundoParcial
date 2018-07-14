@@ -101,13 +101,7 @@ namespace RegistroSegundoParcial.BLL
                     EliminInventario.Inventario -= item.Cantidad;
                 }
 
-                var MantetAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
-
-                double eliminado = mantenimiento.Total - MantetAnt.Total;
-
-                Vehiculos vehiculos = VehiculosBLL.Buscar(mantenimiento.VehiculoId);
-                vehiculos.TotalMantenimiento += eliminado;
-                VehiculosBLL.Modificar(vehiculos);
+                contexto.Vehiculos.Find(mantenimiento.VehiculoId).TotalMantenimiento -= mantenimiento.Total;
 
                 contexto.Mantenimiento.Remove(mantenimiento);
 

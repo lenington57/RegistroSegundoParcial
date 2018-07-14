@@ -214,51 +214,10 @@ namespace RegistroSegundoParcial.UI.Registros
         {
             bool HayErrores = false;
 
-            if (CantidadNumericUpDown.Value == 0)
-            {
-                MyErrorProvider.SetError(CantidadNumericUpDown,
-                    "Debe digitar una Cantidad");
-                HayErrores = true;
-            }
-
             if (MantenimientoDetalleDataGridView.RowCount == 0)
             {
                 MyErrorProvider.SetError(MantenimientoDetalleDataGridView,
                     "Debe Agregar los Artículos ");
-                HayErrores = true;
-            }
-            if (String.IsNullOrWhiteSpace(PrecioTextBox.Text))
-            {
-                MyErrorProvider.SetError(CantidadNumericUpDown,
-                    "Debe digitar una Cantidad");
-                HayErrores = true;
-            }
-
-            if (String.IsNullOrWhiteSpace(ImporteTextBox.Text))
-            {
-                MyErrorProvider.SetError(CantidadNumericUpDown,
-                    "Debe digitar una Cantidad");
-                HayErrores = true;
-            }
-
-            if (String.IsNullOrWhiteSpace(SubTotalTextBox.Text))
-            {
-                MyErrorProvider.SetError(AgregarButtton,
-                  "Debe Agregar los Artículos");
-                HayErrores = true;
-            }
-
-            if (String.IsNullOrWhiteSpace(ItbisTextBox.Text))
-            {
-                MyErrorProvider.SetError(AgregarButtton,
-                  "Debe Agregar los Artículos");
-                HayErrores = true;
-            }
-
-            if (String.IsNullOrWhiteSpace(TotalTextBox.Text))
-            {
-                MyErrorProvider.SetError(AgregarButtton,
-                  "Debe Agregar los Artículos");
                 HayErrores = true;
             }
 

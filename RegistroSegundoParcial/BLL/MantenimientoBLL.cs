@@ -98,7 +98,7 @@ namespace RegistroSegundoParcial.BLL
                 foreach (var item in mantenimiento.Detalle)
                 {
                     var EliminInventario = contexto.Articulos.Find(item.ArticuloId);
-                    EliminInventario.Inventario -= item.Cantidad;
+                    EliminInventario.Inventario += item.Cantidad;
                 }
 
                 contexto.Vehiculos.Find(mantenimiento.VehiculoId).TotalMantenimiento -= mantenimiento.Total;

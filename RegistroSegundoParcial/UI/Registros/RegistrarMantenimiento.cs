@@ -334,7 +334,7 @@ namespace RegistroSegundoParcial.UI.Registros
 
             if (Paso)
             {
-                MantenimientoBLL.CostoMantenimiento(LlenaClase().Total, VehiculoComboBox.Text);
+                //    MantenimientoBLL.CostoMantenimiento(LlenaClase().Total, VehiculoComboBox.Text);
                 NuevoButton.PerformClick();
                 MessageBox.Show("Guardado!!", "Exito",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

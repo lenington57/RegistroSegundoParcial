@@ -210,6 +210,49 @@ namespace RegistroSegundoParcial.UI.Registros
             TotalTextBox.Text = Total.ToString();
         }
 
+        private bool ContarCantidadInventario()
+        {
+            List<MantenimientoDetalle> detalle = new List<MantenimientoDetalle>();
+
+            if (MantenimientoDetalleDataGridView.DataSource != null)
+            {
+                detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
+            }
+
+            Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
+
+            Articulos articulo = (Articulos)ArticuloComboBox.SelectedItem;
+
+            double CantidadCotizada = 0;
+            foreach (var item in detalle)
+            {
+                CantidadCotizada += item.Cantidad;
+            }
+
+            double CantidadArticulo = articulo.Inventario;
+
+            bool paso = false;
+
+            if ((int)CantidadNumericUpDown.Value > articulo.Inventario)
+            {
+                MyErrorProvider.SetError(CantidadNumericUpDown, "Error");
+                MessageBox.Show("Cantidad mayor a la existente en inventario!!", "Falló!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                paso = true;
+            }
+
+            CantidadArticulo -= CantidadCotizada;
+
+            if (CantidadArticulo < CantidadCotizada)
+            {
+                MessageBox.Show($"Solo quedan {CantidadArticulo} del articulo deseado!!", "Articulo Agotado!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                paso = true;
+            }
+
+            return paso;
+        }        
+
         private bool HayErrores()
         {
             bool HayErrores = false;
@@ -235,14 +278,11 @@ namespace RegistroSegundoParcial.UI.Registros
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
             }
 
-            Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
+            
 
-            Articulos articulo = (Articulos)ArticuloComboBox.SelectedItem;
-
-            if ((int)CantidadNumericUpDown.Value > articulo.Inventario)
+            if (ContarCantidadInventario())
             {
-                MyErrorProvider.SetError(CantidadNumericUpDown, "Error");
-                MessageBox.Show("Cantidad mayor a la existente en inventario!!", "Validación!!",
+                MessageBox.Show("Cantidad mayor a la existente en inventario!!", "Falló!!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -334,7 +374,6 @@ namespace RegistroSegundoParcial.UI.Registros
 
             if (Paso)
             {
-                //    MantenimientoBLL.CostoMantenimiento(LlenaClase().Total, VehiculoComboBox.Text);
                 NuevoButton.PerformClick();
                 MessageBox.Show("Guardado!!", "Exito",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

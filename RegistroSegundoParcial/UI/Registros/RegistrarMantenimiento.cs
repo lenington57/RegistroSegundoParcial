@@ -15,6 +15,9 @@ namespace RegistroSegundoParcial.UI.Registros
 {
     public partial class RegistrarMantenimiento : Form
     {
+        public string nombre = "";
+        public double TotalDeMantenimiento = 0;
+
         public RegistrarMantenimiento()
         {
             InitializeComponent();                       
@@ -251,7 +254,9 @@ namespace RegistroSegundoParcial.UI.Registros
             }
 
             return paso;
-        }        
+        }
+
+        
 
         private bool HayErrores()
         {
@@ -277,12 +282,14 @@ namespace RegistroSegundoParcial.UI.Registros
             {
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
             }
-
-            
-
             if (ContarCantidadInventario())
             {
                 MessageBox.Show("Cantidad mayor a la existente en inventario!!", "Falló!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (CantidadNumericUpDown.Value == 0)
+            {
+                MessageBox.Show("Cantidad no puede ser cero!!", "Falló!!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
@@ -364,8 +371,9 @@ namespace RegistroSegundoParcial.UI.Registros
                 Mantenimiento mantenimi = MantenimientoBLL.Buscar(id);
 
                 if (mantenimi != null)
-                {
+                {                    
                     Paso = MantenimientoBLL.Modificar(mantenimiento);
+                    //ModificarVehiculo();
                 }
                 else
                     MessageBox.Show("Id no existe", "Falló",
@@ -432,10 +440,51 @@ namespace RegistroSegundoParcial.UI.Registros
 
         }
         //Dando click sin querer
+
+        private void ModificarVehiculo()
+        {
+            Mantenimiento mantenimiento = new Mantenimiento();
+            var MantetAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
+            Contexto contexto = new Contexto();
+
+            List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalleDataGridView.DataSource;
+            string NombreVeh = "";
+            double TotalMant = 0;
+
+            foreach (var item in detalle)
+            {
+                NombreVeh = contexto.Vehiculos.Find(item.VehiculoId).Descripcion;
+            }
+
+            foreach (var item in detalle)
+            {
+                TotalMant = contexto.Vehiculos.Find(item.VehiculoId).TotalMantenimiento;
+            }
+
+            double total = 0;
+            total = TotalDeMantenimiento - TotalMant;
+
+            int id = 0;
+
+            if (nombre != NombreVeh)
+            {
+                //foreach (var item in mantenimiento.Detalle)
+                //{
+                //    contexto.Mantenimiento.Find(item.VehiculoId).Total += total;
+                //}
+
+                foreach (var item in VehiculosBLL.GetList(x=> x.VehiculoId == mantenimiento.VehiculoId))
+                {
+                    contexto.Mantenimiento.Find(item.VehiculoId).Total += total;
+                }
+            }
+
+            //VehiculosBLL.Modificar(vehiculos);
+        }
         private void MantenimientoDetalleDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
-
+            TotalDeMantenimiento = double.Parse(TotalTextBox.Text);
+            nombre = VehiculoComboBox.Text;
         }
         //Dando click sin querer
         private void VehiculoComboBox_SelectedIndexChanged(object sender, EventArgs e)

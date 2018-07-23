@@ -135,7 +135,6 @@ namespace RegistroSegundoParcial.BLL
             Contexto contexto = new Contexto();
             var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
             var ArticulosAnteriores = contexto.Articulos.Find(EntradasAnteriores.ArticuloId);
-            var Nose = contexto.Articulos.Find(EntradasAnteriores.ArticuloId);
 
             if (EntradasAnteriores.ArticuloId != entradas.ArticuloId)
             {

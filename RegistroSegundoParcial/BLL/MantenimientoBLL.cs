@@ -46,6 +46,8 @@ namespace RegistroSegundoParcial.BLL
             {
                 var MantetAnt = MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
 
+                ModificarBien(mantenimiento, MantetAnt);
+
                 foreach (var item in MantetAnt.Detalle)
                 {
                     contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
@@ -219,9 +221,19 @@ namespace RegistroSegundoParcial.BLL
             }
         }
 
-        public static void RestarEliminadas()
+        public static void ModificarBien(Mantenimiento mantenimiento, Mantenimiento MantenimientosAnteriores)
         {
+            Contexto contexto = new Contexto();
+            var Vehiculo = contexto.Vehiculos.Find(mantenimiento.VehiculoId);
+            var VehiculosAnteriores = contexto.Vehiculos.Find(MantenimientosAnteriores.VehiculoId);
 
+            if (VehiculosAnteriores.VehiculoId != Vehiculo.VehiculoId)
+            {
+                Vehiculo.TotalMantenimiento += mantenimiento.Total;
+                VehiculosAnteriores.TotalMantenimiento -= MantenimientosAnteriores.Total;
+                VehiculosBLL.Modificar(Vehiculo);
+                VehiculosBLL.Modificar(VehiculosAnteriores);
+            }
         }
 
     }

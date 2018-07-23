@@ -102,7 +102,12 @@ namespace RegistroSegundoParcial.UI.Registros
             entradas = LlenaClase();
 
             if (EntradaIdNumericUpDown.Value == 0)
+            {
                 Paso = EntradasBLL.Guardar(entradas);
+                MessageBox.Show("Guardado", "Exito",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+                
             else
             {
                 int id = Convert.ToInt32(EntradaIdNumericUpDown.Value);
@@ -111,6 +116,8 @@ namespace RegistroSegundoParcial.UI.Registros
                 if (entradas != null)
                 {
                     Paso = EntradasBLL.Modificar(LlenaClase());
+                    MessageBox.Show("Modificado", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("Id no existe", "Falló",
@@ -119,8 +126,6 @@ namespace RegistroSegundoParcial.UI.Registros
             
             if (Paso)
             {
-                MessageBox.Show("Guardado", "Exito",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Limpiar();
             }
             else

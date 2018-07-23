@@ -364,7 +364,11 @@ namespace RegistroSegundoParcial.UI.Registros
             mantenimiento = LlenaClase();
 
             if (MantenimientoIdNumericUpDown.Value == 0)
+            {
                 Paso = MantenimientoBLL.Guardar(mantenimiento);
+                MessageBox.Show("Guardado!!", "Exito",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
                 int id = Convert.ToInt32(MantenimientoIdNumericUpDown.Value);
@@ -373,7 +377,8 @@ namespace RegistroSegundoParcial.UI.Registros
                 if (mantenimi != null)
                 {                    
                     Paso = MantenimientoBLL.Modificar(mantenimiento);
-                    //ModificarVehiculo();
+                    MessageBox.Show("Modificado!!", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                     MessageBox.Show("Id no existe", "Falló",
@@ -383,8 +388,6 @@ namespace RegistroSegundoParcial.UI.Registros
             if (Paso)
             {
                 NuevoButton.PerformClick();
-                MessageBox.Show("Guardado!!", "Exito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
                 MessageBox.Show("No se pudo guardar!!", "Fallo",

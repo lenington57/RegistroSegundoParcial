@@ -29,7 +29,7 @@ namespace RegistroSegundoParcial.UI.Consultas
                     id = Convert.ToInt32(CriterioTextBox.Text);
                     filtro = a => a.ArticuloId == id;
                     break;
-                case 1://Filtrando por la Fecha de Vencimiento del Artículo.
+                case 1://Filtrando por la Descripcion del Artículo.
                     filtro = a => a.Descripcion.Contains(CriterioTextBox.Text);
                     break;
                 case 2://Filtrando por Costo del Artículo.

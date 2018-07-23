@@ -45,6 +45,9 @@ namespace RegistroSegundoParcial.BLL
             {
                 Entradas EntrAnt = EntradasBLL.Buscar(entradas.EntradaId);
 
+
+                ModificarBien(entradas, EntrAnt);
+
                 double modificado = entradas.Cantidad - EntrAnt.Cantidad;
 
                 var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
@@ -125,6 +128,22 @@ namespace RegistroSegundoParcial.BLL
             }
 
             return entradas;
+        }
+
+        public static void ModificarBien(Entradas entradas, Entradas EntradasAnteriores)
+        {
+            Contexto contexto = new Contexto();
+            var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
+            var ArticulosAnteriores = contexto.Articulos.Find(EntradasAnteriores.ArticuloId);
+            var Nose = contexto.Articulos.Find(EntradasAnteriores.ArticuloId);
+
+            if (EntradasAnteriores.ArticuloId != entradas.ArticuloId)
+            {
+                Articulo.Inventario += entradas.Cantidad;
+                ArticulosAnteriores.Inventario -= EntradasAnteriores.Cantidad;
+                ArticulosBLL.Modificar(Articulo);
+                ArticulosBLL.Modificar(ArticulosAnteriores);
+            }
         }
 
     }

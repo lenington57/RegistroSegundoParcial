@@ -45,14 +45,17 @@ namespace RegistroSegundoParcial.BLL
             {
                 Entradas EntrAnt = EntradasBLL.Buscar(entradas.EntradaId);
 
+                if (EntrAnt.ArticuloId != entradas.ArticuloId)
+                {
+                    ModificarBien(entradas, EntrAnt);
+                }
 
-                ModificarBien(entradas, EntrAnt);
+               
+                    double modificado = entradas.Cantidad - EntrAnt.Cantidad;
 
-                double modificado = entradas.Cantidad - EntrAnt.Cantidad;
-
-                var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
-                Articulo.Inventario += modificado;
-                ArticulosBLL.Modificar(Articulo);
+                    var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
+                    Articulo.Inventario += modificado;
+                    ArticulosBLL.Modificar(Articulo);
 
                 contexto.Entry(entradas).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
@@ -135,14 +138,11 @@ namespace RegistroSegundoParcial.BLL
             Contexto contexto = new Contexto();
             var Articulo = contexto.Articulos.Find(entradas.ArticuloId);
             var ArticulosAnteriores = contexto.Articulos.Find(EntradasAnteriores.ArticuloId);
-
-            if (EntradasAnteriores.ArticuloId != entradas.ArticuloId)
-            {
-                Articulo.Inventario += entradas.Cantidad;
-                ArticulosAnteriores.Inventario -= EntradasAnteriores.Cantidad;
-                ArticulosBLL.Modificar(Articulo);
-                ArticulosBLL.Modificar(ArticulosAnteriores);
-            }
+            
+            Articulo.Inventario += entradas.Cantidad;
+            ArticulosAnteriores.Inventario -= EntradasAnteriores.Cantidad;
+            ArticulosBLL.Modificar(Articulo);
+            ArticulosBLL.Modificar(ArticulosAnteriores);
         }
 
     }

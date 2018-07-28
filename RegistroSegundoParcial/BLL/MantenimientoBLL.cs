@@ -27,7 +27,7 @@ namespace RegistroSegundoParcial.BLL
                 contexto.Vehiculos.Find(mantenimiento.VehiculoId).TotalMantenimiento += mantenimiento.Total;
 
                 contexto.SaveChanges();
-                    paso = true;
+                paso = true;
                 
                 contexto.Dispose();
             }
@@ -61,7 +61,7 @@ namespace RegistroSegundoParcial.BLL
 
                 foreach (var item in mantenimiento.Detalle)
                 {
-                    contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+                    contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
                     var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     contexto.Entry(item).State = estado;
                 }

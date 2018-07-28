@@ -152,6 +152,7 @@ namespace RegistroSegundoParcial.UI.Registros
                 MessageBox.Show("No existe!!", "Falló", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        //Eventos de los Objetos
         private void CantidadTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar))

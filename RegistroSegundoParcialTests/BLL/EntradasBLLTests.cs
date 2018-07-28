@@ -19,7 +19,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             bool paso;
             Entradas entrada = new Entradas();
             entrada.EntradaId = 3;
-            entrada.Articulo = "Clinch";
+            entrada.ArticuloId = 2;
             entrada.Cantidad = 10; 
             paso = EntradasBLL.Guardar(entrada);
             Assert.AreEqual(paso, true); 
@@ -31,7 +31,7 @@ namespace RegistroSegundoParcial.BLL.Tests
             bool paso;
             Entradas entrada = new Entradas();
             entrada.EntradaId = 3;
-            entrada.Articulo = "Clinch";
+            entrada.ArticuloId = 2;
             entrada.Cantidad = 8; 
             paso = EntradasBLL.Modificar(entrada);
             Assert.AreEqual(paso, true);
